@@ -3,21 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
   <title>お仕事と一日の流れ | アイナベル</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --mint-sign: #A9D9BE;
-      --mint-tint: #E4F2EA;
+      --mint-tint: #E2ECE9;
       --mint-deep: #2F7A5B;
       --ink: #23372E;
       --ink-soft: #5A6E63;
-      --ground: #F7FAF7;
+      --ground: #F5F0E9;
       --card: #FFFFFF;
       --coral: #DB6B47;
       --sun: #F4C95D;
       --line: #D8E5DD;
+      --blush: #FBE0E4;
+      --blush-deep: #C97C93;
     }
 
     body {
@@ -65,7 +70,9 @@
     /* ページヘッダー */
     .page-header {
       max-width: 1200px; margin: 0 auto; padding: 40px 24px 32px;
-      background: linear-gradient(150deg, var(--mint-tint), var(--ground) 70%);
+      background:
+      repeating-linear-gradient(100deg, rgba(169,217,190,0.22) 0px, rgba(169,217,190,0.22) 26px, transparent 26px, transparent 52px),
+      linear-gradient(150deg, var(--mint-tint), var(--ground) 70%);
     }
     .breadcrumb { font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; }
     .breadcrumb a { color: var(--mint-deep); text-decoration: none; }
@@ -169,6 +176,43 @@
     .fixed-cta .phone-btn { background: #fff; color: var(--mint-deep); border: 1.5px solid var(--mint-sign); }
     .fixed-cta .apply-btn { background: var(--coral); color: #fff; }
     @media (min-width: 768px) { .fixed-cta { display: none; } body { padding-bottom: 0; } }
+
+    /* ========== リボンラベル & ストライプ装飾 ========== */
+    .script { font-family: 'Caveat', cursive; }
+
+    .ribbon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 20px;
+      background: var(--mint-tint);
+      color: var(--mint-deep);
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      margin-bottom: 10px;
+    }
+    .ribbon::before, .ribbon::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 12px;
+      background: inherit;
+    }
+    .ribbon::before { left: -11px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+    .ribbon::after { right: -11px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+    .ribbon.blush { background: var(--blush); color: var(--blush-deep); }
+
+    .stripes-mint {
+      background-image: repeating-linear-gradient(100deg, var(--mint-tint) 0px, var(--mint-tint) 34px, #EEF5F1 34px, #EEF5F1 68px);
+    }
+    .stripes-blush {
+      background-image: repeating-linear-gradient(100deg, var(--blush) 0px, var(--blush) 34px, #FDEAEC 34px, #FDEAEC 68px);
+    }
   </style>
 </head>
 <body>
@@ -179,7 +223,7 @@
         <div class="maru logo">アイナベル<span class="logo-sub">就労継続支援B型</span></div>
       </a>
       <div class="nav-links">
-        <a href="ainabelle-prototype.html">アイナベルについて</a>
+        <a href="ainabelle-about.html">アイナベルについて</a>
         <a href="ainabelle-work.html" class="current">お仕事と一日の流れ</a>
         <a href="ainabelle-guide.html">ご利用までのながれ</a>
         <a href="ainabelle-prototype.html#access">アクセス</a>
@@ -191,13 +235,13 @@
 
   <div class="page-header">
     <div class="breadcrumb"><a href="ainabelle-prototype.html">ホーム</a> ／ お仕事と一日の流れ</div>
-    <div class="page-eyebrow">Work</div>
+    <div class="page-eyebrow ribbon">Work</div>
     <h1 class="maru">お仕事と一日の流れ</h1>
     <p class="lead">あなたのペースで、選べるピッタリのお仕事を見つけてください。ベーシックスケジュールのほか、日数・時間・場所など、ご自身の体調に合わせて無理のないよう個別にスケジュールをプランニングします。</p>
   </div>
 
   <section class="section">
-    <div class="section-eyebrow">Job Categories</div>
+    <div class="section-eyebrow ribbon">Job Categories</div>
     <h2 class="maru">6つのお仕事カテゴリ</h2>
     <p class="desc">できることから少しずつ。得意なこと、興味のあることから選べます。</p>
     <div class="jobs-grid">
@@ -253,7 +297,7 @@
   </section>
 
   <section class="section" style="background: var(--mint-tint);">
-    <div class="section-eyebrow">Your Pace</div>
+    <div class="section-eyebrow ribbon">Your Pace</div>
     <h2 class="maru">自分ペースプラン</h2>
     <div class="plan-block">
       <div>

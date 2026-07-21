@@ -3,21 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
   <title>アイナベル | 就労継続支援B型事業所</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --mint-sign: #A9D9BE;
-      --mint-tint: #E4F2EA;
+      --mint-tint: #E2ECE9;
       --mint-deep: #2F7A5B;
       --ink: #23372E;
       --ink-soft: #5A6E63;
-      --ground: #F7FAF7;
+      --ground: #F5F0E9;
       --card: #FFFFFF;
       --coral: #DB6B47;
       --sun: #F4C95D;
       --line: #D8E5DD;
+      --blush: #FBE0E4;
+      --blush-deep: #C97C93;
     }
 
     body {
@@ -144,7 +149,9 @@
     .hero {
       position: relative;
       padding: 48px 24px;
-      background: linear-gradient(150deg, var(--mint-tint), var(--ground) 65%);
+      background:
+        repeating-linear-gradient(100deg, rgba(169,217,190,0.22) 0px, rgba(169,217,190,0.22) 26px, transparent 26px, transparent 52px),
+        linear-gradient(150deg, var(--mint-tint), var(--ground) 65%);
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
@@ -511,10 +518,18 @@
     }
 
     .location-map {
-      height: 120px;
-      background: repeating-linear-gradient(45deg, var(--mint-tint), var(--mint-tint) 8px, #f0f8f5 8px, #f0f8f5 16px);
+      height: 160px;
       border-radius: 12px;
       margin-bottom: 16px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
     }
 
     .location-card h3 {
@@ -528,6 +543,21 @@
       font-size: 13px;
       color: var(--ink-soft);
       line-height: 1.8;
+    }
+
+    .location-map-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--mint-deep);
+      text-decoration: none;
+      margin-top: 10px;
+    }
+
+    .location-map-link:hover {
+      text-decoration: underline;
     }
 
     /* ========== CTA バナー ========== */
@@ -687,6 +717,43 @@
       cursor: pointer;
       width: 100%;
     }
+
+    /* ========== リボンラベル & ストライプ装飾 ========== */
+    .script { font-family: 'Caveat', cursive; }
+
+    .ribbon {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 20px;
+      background: var(--mint-tint);
+      color: var(--mint-deep);
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      margin-bottom: 10px;
+    }
+    .ribbon::before, .ribbon::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 12px;
+      background: inherit;
+    }
+    .ribbon::before { left: -11px; clip-path: polygon(100% 0, 0 50%, 100% 100%); }
+    .ribbon::after { right: -11px; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+
+    .ribbon.blush { background: var(--blush); color: var(--blush-deep); }
+
+    .stripes-mint {
+      background-image: repeating-linear-gradient(100deg, var(--mint-tint) 0px, var(--mint-tint) 34px, #EEF5F1 34px, #EEF5F1 68px);
+    }
+    .stripes-blush {
+      background-image: repeating-linear-gradient(100deg, var(--blush) 0px, var(--blush) 34px, #FDEAEC 34px, #FDEAEC 68px);
+    }
   </style>
 </head>
 <body>
@@ -696,7 +763,7 @@
     <div class="nav-inner">
       <div class="maru logo">アイナベル<span class="logo-sub">就労継続支援B型</span></div>
       <div class="nav-links">
-        <a href="#about">アイナベルについて</a>
+        <a href="ainabelle-about.html">アイナベルについて</a>
         <a href="ainabelle-work.html">お仕事と一日の流れ</a>
         <a href="ainabelle-guide.html">ご利用までのながれ</a>
         <a href="#access">アクセス</a>
@@ -709,7 +776,7 @@
   <!-- ヒーロー -->
   <section class="hero">
     <div class="hero-text">
-      <div class="hero-en">Relax & My Rhythm</div>
+      <div class="hero-en ribbon">Relax & My Rhythm</div>
       <h1 class="maru">リラックスして、<br><em>自分のリズム</em>で働ける場所。</h1>
       <p class="hero-desc">アイナベルは枚方市・京都市伏見区の就労継続支援B型事業所です。バルーンブーケづくりとカフェのお仕事を、専門スタッフと一緒に、あなたのペースで。</p>
       <div class="hero-buttons">
@@ -730,7 +797,7 @@
 
   <!-- フィーチャー -->
   <section class="section" id="features">
-    <div class="section-eyebrow">Features</div>
+    <div class="section-eyebrow ribbon">Features</div>
     <h2 class="maru">アイナベルの3つの特徴</h2>
     <div class="features">
       <div class="feature-card">
@@ -753,7 +820,7 @@
 
   <!-- 施設ギャラリー -->
   <section class="section" id="gallery">
-    <div class="section-eyebrow">Our Space</div>
+    <div class="section-eyebrow ribbon">Our Space</div>
     <h2 class="maru">事業所のようす</h2>
     <div class="gallery-grid">
       <div class="gallery-item">
@@ -771,7 +838,7 @@
   <section class="section" id="instagram">
     <div class="insta-header">
       <div>
-        <div class="section-eyebrow">Daily Life</div>
+        <div class="section-eyebrow ribbon">Daily Life</div>
         <h2 class="maru" style="margin-bottom:0;">日々のようす</h2>
       </div>
       <div class="insta-tabs">
@@ -796,7 +863,7 @@
 
   <!-- ガイド -->
   <section class="section" id="guide" style="background: var(--mint-tint);">
-    <div class="section-eyebrow">Guide</div>
+    <div class="section-eyebrow ribbon">Guide</div>
     <h2 class="maru">ご利用までのながれ</h2>
     <div class="guide-steps">
       <div class="step">
@@ -823,25 +890,34 @@
 
   <!-- アクセス -->
   <section class="section" id="access">
-    <div class="section-eyebrow">Locations</div>
+    <div class="section-eyebrow ribbon">Locations</div>
     <h2 class="maru">2つの事業所</h2>
     <div class="locations">
       <div class="location-card">
-        <div class="location-map"></div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps?q=大阪府枚方市南中振2-80-9+アイナベル&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="アイナベル枚方の地図"></iframe>
+        </div>
         <h3>アイナベル 枚方</h3>
         <div class="location-info">
+          〒573-0094 大阪府枚方市南中振2-80-9<br>
           京阪 光善寺駅 徒歩5分<br>
           営業時間 10:00–15:30<br>
           <strong>TEL 070-2227-0070</strong>
         </div>
+        <a class="location-map-link" href="https://www.google.com/maps/search/?api=1&query=大阪府枚方市南中振2-80-9+アイナベル" target="_blank" rel="noopener">📍 Googleマップで開く</a>
       </div>
       <div class="location-card">
-        <div class="location-map"></div>
+        <div class="location-map">
+          <iframe src="https://www.google.com/maps?q=京都府京都市伏見区京町八丁目横町67-7+アルティム丹波橋ビル&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="アイナベル京都の地図"></iframe>
+        </div>
         <h3>アイナベル 京都</h3>
         <div class="location-info">
-          京阪 丹波橋駅 徒歩4分<br>
-          営業時間 10:00–15:30<br>
+          〒612-8084 京都府京都市伏見区京町八丁目横町67-7 アルティム丹波橋ビル1F<br>
+          京阪 丹波橋駅 徒歩4分／近鉄 丹波橋駅 徒歩7分<br>
+          営業時間 09:30–15:30（定休日：日曜）<br>
           <strong>TEL 080-5780-0947</strong>
+        </div>
+        <a class="location-map-link" href="https://maps.app.goo.gl/6LTJ9noYdiQwyk8Z8" target="_blank" rel="noopener">📍 Googleマップで開く</a>
         </div>
       </div>
     </div>
