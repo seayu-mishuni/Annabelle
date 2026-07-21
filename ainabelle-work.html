@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>お仕事と一日の流れ | アイナベル</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --mint-sign: #A9D9BE;
+      --mint-tint: #E4F2EA;
+      --mint-deep: #2F7A5B;
+      --ink: #23372E;
+      --ink-soft: #5A6E63;
+      --ground: #F7FAF7;
+      --card: #FFFFFF;
+      --coral: #DB6B47;
+      --sun: #F4C95D;
+      --line: #D8E5DD;
+    }
+
+    body {
+      font-family: "Hiragino Sans", "Noto Sans JP", -apple-system, sans-serif;
+      background: var(--ground);
+      color: var(--ink);
+      line-height: 1.9;
+      font-size: 15px;
+      padding-bottom: 60px;
+    }
+
+    .maru { font-family: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", -apple-system, sans-serif; }
+
+    /* ナビゲーション */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .logo { font-weight: 800; font-size: 14px; color: var(--mint-deep); letter-spacing: 0.04em; line-height: 1.2; }
+    .logo-sub { display: block; font-size: 10px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.1em; }
+    .nav-links { display: none; gap: 20px; font-size: 14px; color: var(--ink); font-weight: 600; }
+    .nav-links a { text-decoration: none; color: inherit; white-space: nowrap; }
+    .nav-links a.current { color: var(--mint-deep); border-bottom: 2px solid var(--coral); padding-bottom: 2px; }
+    .nav-links a:hover { color: var(--mint-deep); }
+    .cta-btn {
+      display: none; background: var(--coral); color: #fff; font-weight: 700; font-size: 13px;
+      border: none; border-radius: 999px; padding: 8px 18px; cursor: pointer; white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(219, 107, 71, 0.25); }
+    .burger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; margin-left: auto; }
+    .burger span { display: block; width: 20px; height: 2px; background: var(--mint-deep); border-radius: 2px; }
+    @media (min-width: 768px) {
+      .burger { display: none; }
+      .nav-links { display: flex; }
+      .cta-btn { display: block; }
+    }
+
+    /* ページヘッダー */
+    .page-header {
+      max-width: 1200px; margin: 0 auto; padding: 40px 24px 32px;
+      background: linear-gradient(150deg, var(--mint-tint), var(--ground) 70%);
+    }
+    .breadcrumb { font-size: 12px; color: var(--ink-soft); margin-bottom: 10px; }
+    .breadcrumb a { color: var(--mint-deep); text-decoration: none; }
+    .page-eyebrow {
+      font-size: 12px; letter-spacing: 0.24em; color: var(--mint-deep);
+      font-weight: 700; text-transform: uppercase; margin-bottom: 8px;
+    }
+    .page-header h1 { font-size: clamp(24px, 5vw, 36px); font-weight: 800; margin-bottom: 10px; text-wrap: balance; }
+    .page-header .lead { color: var(--ink-soft); max-width: 44em; font-size: 15px; }
+
+    /* セクション共通 */
+    .section { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+    .section-eyebrow {
+      font-size: 11px; letter-spacing: 0.2em; color: var(--mint-deep);
+      font-weight: 700; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .section h2 { font-size: clamp(19px, 3.6vw, 24px); font-weight: 800; margin-bottom: 12px; line-height: 1.4; text-wrap: balance; }
+    .section .desc { color: var(--ink-soft); max-width: 46em; margin-bottom: 24px; }
+
+    /* お仕事カテゴリ */
+    .jobs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;
+    }
+    .job-card {
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 22px; display: flex; gap: 16px; align-items: flex-start;
+    }
+    .job-icon {
+      flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px;
+      background: var(--mint-tint); display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .job-card h3 { font-size: 15.5px; font-weight: 700; margin-bottom: 4px; }
+    .job-card .tag {
+      display: inline-block; font-size: 11px; color: var(--mint-deep); background: var(--mint-tint);
+      border-radius: 999px; padding: 2px 10px; font-weight: 700; margin-bottom: 6px;
+    }
+    .job-card p { font-size: 13px; color: var(--ink-soft); }
+
+    /* 自分ペースプラン */
+    .plan-block {
+      background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+      padding: 32px; display: grid; gap: 28px; grid-template-columns: 1fr;
+    }
+    @media (min-width: 860px) {
+      .plan-block { grid-template-columns: 1fr 1fr; }
+    }
+    .plan-block h3 { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+    .plan-block p.body { color: var(--ink-soft); font-size: 14px; margin-bottom: 16px; }
+    .plan-examples { display: flex; flex-direction: column; gap: 10px; }
+    .plan-example {
+      background: var(--mint-tint); border-radius: 12px; padding: 12px 16px;
+      font-size: 13.5px; color: var(--ink); display: flex; gap: 10px; align-items: flex-start;
+    }
+    .plan-example::before { content: "💬"; flex-shrink: 0; }
+    .lunch-box {
+      background: var(--ink); color: #fff; border-radius: 16px; padding: 24px;
+      display: flex; align-items: center; gap: 16px; justify-content: space-between;
+    }
+    .lunch-box .label { font-size: 13px; opacity: 0.85; }
+    .lunch-box .price { font-size: 26px; font-weight: 800; color: var(--sun); }
+    .lunch-note { font-size: 11.5px; color: var(--ink-soft); margin-top: 10px; }
+
+    /* 生活リズムコラム */
+    .rhythm-box {
+      background: var(--mint-tint); border-radius: 18px; padding: 28px 32px; margin: 8px 0;
+    }
+    .rhythm-box h3 { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--mint-deep); }
+    .rhythm-box p { font-size: 14px; color: var(--ink); max-width: 50em; }
+    .rhythm-box .caveat { font-size: 12px; color: var(--ink-soft); margin-top: 10px; }
+
+    /* CTA バナー */
+    .cta-banner {
+      background: var(--mint-deep); color: #fff; padding: 28px 24px; margin: 48px 24px;
+      border-radius: 18px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start;
+      max-width: 1200px; margin-left: auto; margin-right: auto;
+    }
+    .cta-banner h3 { font-size: 18px; font-weight: 700; }
+    .cta-banner p { font-size: 14px; opacity: 0.9; }
+    .btn-primary {
+      background: var(--coral); color: #fff; padding: 12px 28px; border: none; border-radius: 999px;
+      font-weight: 700; font-size: 15px; cursor: pointer;
+    }
+    @media (min-width: 640px) {
+      .cta-banner { flex-direction: row; justify-content: space-between; align-items: center; }
+      .cta-banner > div { flex: 1; }
+    }
+
+    footer {
+      background: var(--ink); color: #fff; padding: 28px 24px; font-size: 12px; text-align: center; margin-top: 48px;
+    }
+
+    /* モバイル固定CTA */
+    .fixed-cta {
+      display: flex; gap: 8px; position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(255, 255, 255, 0.97); border-top: 1px solid var(--line); padding: 10px 12px; z-index: 50;
+    }
+    .fixed-cta button {
+      flex: 1; padding: 10px 12px; border: none; border-radius: 999px;
+      font-weight: 700; font-size: 14px; cursor: pointer;
+    }
+    .fixed-cta .phone-btn { background: #fff; color: var(--mint-deep); border: 1.5px solid var(--mint-sign); }
+    .fixed-cta .apply-btn { background: var(--coral); color: #fff; }
+    @media (min-width: 768px) { .fixed-cta { display: none; } body { padding-bottom: 0; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="ainabelle-prototype.html" style="text-decoration:none; color:inherit;">
+        <div class="maru logo">アイナベル<span class="logo-sub">就労継続支援B型</span></div>
+      </a>
+      <div class="nav-links">
+        <a href="ainabelle-prototype.html">アイナベルについて</a>
+        <a href="ainabelle-work.html" class="current">お仕事と一日の流れ</a>
+        <a href="ainabelle-guide.html">ご利用までのながれ</a>
+        <a href="ainabelle-prototype.html#access">アクセス</a>
+      </div>
+      <button class="cta-btn">見学を申し込む</button>
+      <button class="burger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="ainabelle-prototype.html">ホーム</a> ／ お仕事と一日の流れ</div>
+    <div class="page-eyebrow">Work</div>
+    <h1 class="maru">お仕事と一日の流れ</h1>
+    <p class="lead">あなたのペースで、選べるピッタリのお仕事を見つけてください。ベーシックスケジュールのほか、日数・時間・場所など、ご自身の体調に合わせて無理のないよう個別にスケジュールをプランニングします。</p>
+  </div>
+
+  <section class="section">
+    <div class="section-eyebrow">Job Categories</div>
+    <h2 class="maru">6つのお仕事カテゴリ</h2>
+    <p class="desc">できることから少しずつ。得意なこと、興味のあることから選べます。</p>
+    <div class="jobs-grid">
+      <div class="job-card">
+        <div class="job-icon">🎈</div>
+        <div>
+          <div class="tag">製造販売</div>
+          <h3>バルーンブーケ・ソープフラワーの製作</h3>
+          <p>"贈る喜び"を届ける仕事がしたい人に。提携店で実際に販売される商品づくりです。</p>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-icon">✂️</div>
+        <div>
+          <div class="tag">ハンドメイド</div>
+          <h3>布小物作成／雑貨製造／検品</h3>
+          <p>モノづくりの現場で働きたい人に。手を動かす作業が中心です。</p>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-icon">📦</div>
+        <div>
+          <div class="tag">テーブルワーク</div>
+          <h3>パッケージング／器具クリーニング</h3>
+          <p>集中できる環境で働きたい人に。落ち着いて取り組める作業です。</p>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-icon">☕</div>
+        <div>
+          <div class="tag">接客</div>
+          <h3>イベント出店／リユース販売</h3>
+          <p>憧れの職業で働いてみたい人に。人と接する仕事に挑戦できます。</p>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-icon">💻</div>
+        <div>
+          <div class="tag">IT関係</div>
+          <h3>PC入力／SNS投稿／デザイン作成</h3>
+          <p>スキルを活かして働きたい人に。パソコンでの作業が中心です。</p>
+        </div>
+      </div>
+      <div class="job-card">
+        <div class="job-icon">🌾</div>
+        <div>
+          <div class="tag">出向ワーク</div>
+          <h3>ファームワーク／ポスティング／本の仕分け／クリーニング</h3>
+          <p>新しい環境で働いてみたい人に。事業所の外での作業もあります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--mint-tint);">
+    <div class="section-eyebrow">Your Pace</div>
+    <h2 class="maru">自分ペースプラン</h2>
+    <div class="plan-block">
+      <div>
+        <h3>無理のないスケジュールを一緒に</h3>
+        <p class="body">ベーシックスケジュールの他に、日数・時間・場所など、ご自身の体調に合わせて無理のないよう個別にスケジュールをプランニングします。</p>
+        <div class="plan-examples">
+          <div class="plan-example">週に2日だけ、接客に関わる仕事をしてみようかな</div>
+          <div class="plan-example">午後から2時間だけ、雑貨を作ってみたい</div>
+          <div class="plan-example">体調が悪い日は、家でパソコン入力の仕事をしてみたい</div>
+        </div>
+      </div>
+      <div>
+        <div class="lunch-box">
+          <div>
+            <div class="label">栄養バランスを考えたランチ提供もあります</div>
+            <div class="price">¥160〜</div>
+          </div>
+          <div style="font-size: 32px;">🍱</div>
+        </div>
+        <p class="lunch-note">※価格は目安です。詳しくは各事業所にお問い合わせください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="rhythm-box">
+      <h3 class="maru">生活リズムを整えるということ</h3>
+      <p>規則正しい生活リズムは、健康や幸福感に大きな影響を与えます。ワークスケジュールを作成することは、日常生活の予定を整理し、規則正しい生活を始めるための重要なステップです。また、人との交流や対人関係スキルの向上も、就労や社会復帰や病気の再発防止に役立ちます。</p>
+      <p class="caveat">※調整速度には個人差がございます。</p>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <div>
+      <h3 class="maru">お仕事内容について、まずはご相談ください。</h3>
+      <p>見学時に、実際の作業の様子をご覧いただけます。</p>
+    </div>
+    <button class="btn-primary">見学を申し込む</button>
+  </div>
+
+  <footer>
+    <p>アイナベル 就労継続支援B型事業所 | 枚方・京都伏見 | 提携：エシカルフラワー</p>
+    <p>© 2024 Ainabelle. All rights reserved.</p>
+  </footer>
+
+  <div class="fixed-cta">
+    <button class="phone-btn">📞 電話する</button>
+    <button class="apply-btn">見学を申し込む</button>
+  </div>
+
+  <script>
+    document.querySelector('.burger').addEventListener('click', function() {
+      this.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

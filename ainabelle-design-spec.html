@@ -1,0 +1,510 @@
+<meta charset="utf-8">
+<title>ainabelle.com リニューアル デザイン設計書</title>
+<style>
+  :root {
+    /* ---- 提案パレットをこの設計書自体にも適用 ---- */
+    --mint-sign: #A9D9BE;   /* 看板ミント（装飾・背景） */
+    --mint-tint: #E4F2EA;   /* ミント淡色（帯背景） */
+    --mint-deep: #2F7A5B;   /* ディープミント（見出し・リンク） */
+    --ink: #23372E;         /* スミグリーン（本文） */
+    --ink-soft: #5A6E63;    /* 補助テキスト */
+    --ground: #F7FAF7;      /* 生成りホワイト（地色） */
+    --card: #FFFFFF;
+    --coral: #DB6B47;       /* コーラル（CTA限定） */
+    --sun: #F4C95D;         /* サンイエロー（マーカー・装飾） */
+    --line: #D8E5DD;
+    --shadow: 0 2px 12px rgba(35, 55, 46, .07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --mint-tint: #1E3229;
+      --mint-deep: #7FC8A4;
+      --ink: #E2ECE6;
+      --ink-soft: #97ACA0;
+      --ground: #131C17;
+      --card: #1B2620;
+      --coral: #E8845F;
+      --sun: #E3BC5B;
+      --line: #2C3E34;
+      --shadow: 0 2px 12px rgba(0, 0, 0, .35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --mint-tint: #1E3229;
+    --mint-deep: #7FC8A4;
+    --ink: #E2ECE6;
+    --ink-soft: #97ACA0;
+    --ground: #131C17;
+    --card: #1B2620;
+    --coral: #E8845F;
+    --sun: #E3BC5B;
+    --line: #2C3E34;
+    --shadow: 0 2px 12px rgba(0, 0, 0, .35);
+  }
+  :root[data-theme="light"] {
+    --mint-tint: #E4F2EA;
+    --mint-deep: #2F7A5B;
+    --ink: #23372E;
+    --ink-soft: #5A6E63;
+    --ground: #F7FAF7;
+    --card: #FFFFFF;
+    --coral: #DB6B47;
+    --sun: #F4C95D;
+    --line: #D8E5DD;
+    --shadow: 0 2px 12px rgba(35, 55, 46, .07);
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    line-height: 1.9;
+    font-size: 15.5px;
+    margin: 0;
+  }
+  .maru {
+    font-family: "Hiragino Maru Gothic ProN", "Zen Maru Gothic", "Hiragino Sans", sans-serif;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---------- 設計書ヘッダー ---------- */
+  header.doc {
+    background: linear-gradient(160deg, var(--mint-tint), var(--ground) 70%);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 24px 40px;
+    margin-bottom: 48px;
+  }
+  header.doc .inner { max-width: 880px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--mint-deep); font-weight: 700; margin: 0 0 10px;
+  }
+  header.doc h1 {
+    font-size: clamp(26px, 4.5vw, 38px); line-height: 1.35;
+    margin: 0 0 14px; text-wrap: balance; color: var(--ink);
+  }
+  header.doc p.lead { max-width: 40em; color: var(--ink-soft); margin: 0; }
+  .meta { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 22px; font-size: 13px; color: var(--ink-soft); }
+  .meta b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- 見出し ---------- */
+  h2 {
+    font-size: 22px; margin: 72px 0 8px; line-height: 1.4;
+    display: flex; align-items: baseline; gap: 12px; text-wrap: balance;
+  }
+  h2 .no {
+    font-size: 13px; letter-spacing: .12em; color: var(--mint-deep);
+    font-weight: 700; font-variant-numeric: tabular-nums;
+  }
+  h2 + p.sub { color: var(--ink-soft); margin: 0 0 24px; max-width: 44em; }
+  h3 { font-size: 16.5px; margin: 36px 0 10px; }
+  p { max-width: 44em; }
+  ul { padding-left: 1.4em; max-width: 44em; }
+  li { margin: 4px 0; }
+  strong { color: var(--mint-deep); font-weight: 700; }
+
+  /* ---------- 課題テーブル ---------- */
+  .issues { display: grid; gap: 10px; margin: 24px 0; }
+  .issue {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 14px 18px; display: grid; grid-template-columns: 130px 1fr; gap: 14px;
+  }
+  .issue .tag { font-size: 12.5px; font-weight: 700; color: var(--coral); padding-top: 2px; }
+  .issue .body { font-size: 14px; color: var(--ink); }
+  @media (max-width: 560px) { .issue { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* ---------- コンセプト ---------- */
+  .concept {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    padding: 36px 32px; box-shadow: var(--shadow); margin: 28px 0;
+  }
+  .concept .phrase {
+    font-size: clamp(22px, 3.6vw, 30px); line-height: 1.5; margin: 0 0 6px;
+    color: var(--ink); font-weight: 700; text-wrap: balance;
+  }
+  .concept .phrase em {
+    font-style: normal;
+    background: linear-gradient(transparent 68%, var(--sun) 68%);
+  }
+  .keywords { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+  .kw {
+    font-size: 13px; font-weight: 600; color: var(--mint-deep);
+    background: var(--mint-tint); border-radius: 999px; padding: 5px 16px;
+  }
+
+  /* ---------- パレット ---------- */
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 24px 0; }
+  .swatch { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .swatch .chip { height: 72px; }
+  .swatch .info { padding: 12px 16px; font-size: 13px; }
+  .swatch .info b { display: block; font-size: 14px; }
+  .swatch .info code { font-size: 12px; color: var(--ink-soft); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .swatch .use { color: var(--ink-soft); margin-top: 2px; }
+
+  .note {
+    border-left: 3px solid var(--sun); background: var(--card);
+    border-radius: 0 12px 12px 0; padding: 14px 20px; font-size: 14px;
+    max-width: 46em; margin: 20px 0; color: var(--ink);
+  }
+
+  /* ---------- タイポ ---------- */
+  .typerow {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 24px; margin: 12px 0;
+    display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: center;
+  }
+  .typerow .label { font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
+  .typerow .label b { color: var(--ink); display: block; font-size: 13.5px; }
+  @media (max-width: 560px) { .typerow { grid-template-columns: 1fr; gap: 8px; } }
+
+  /* ---------- IA ---------- */
+  .ia { display: grid; gap: 12px; margin: 24px 0; }
+  .ia-page {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px 20px;
+  }
+  .ia-page.home { border-color: var(--mint-deep); border-width: 1.5px; }
+  .ia-page .name { font-weight: 700; font-size: 15px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .ia-page .path { font-size: 12px; color: var(--ink-soft); font-family: ui-monospace, Menlo, monospace; font-weight: 400; }
+  .ia-page .desc { font-size: 13.5px; color: var(--ink-soft); margin-top: 4px; }
+  .badge-new {
+    font-size: 11px; font-weight: 700; color: #fff; background: var(--coral);
+    border-radius: 999px; padding: 2px 10px; letter-spacing: .05em;
+  }
+
+  /* ---------- モックアップ共通 ---------- */
+  .mockshelf { display: flex; gap: 28px; align-items: flex-start; flex-wrap: wrap; margin: 28px 0; }
+  .mockshelf > div:first-child { flex: 1 1 520px; min-width: 300px; }
+  .mockshelf > div:last-child { flex: 0 1 260px; }
+  .browser {
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow); background: #fff;
+  }
+  .browser .bar {
+    background: #E9EFEA; padding: 8px 14px; display: flex; gap: 6px; align-items: center;
+    border-bottom: 1px solid #DCE5DE;
+  }
+  .browser .bar i { width: 9px; height: 9px; border-radius: 50%; background: #C9D6CC; display: block; }
+  .browser .bar .url {
+    margin-left: 10px; background: #fff; border-radius: 999px; font-size: 10px;
+    color: #7A8A7E; padding: 2px 14px; font-family: ui-monospace, Menlo, monospace;
+  }
+  .phone {
+    max-width: 260px; border: 1px solid var(--line); border-radius: 26px; overflow: hidden;
+    box-shadow: var(--shadow); background: #fff;
+  }
+  .caption { font-size: 12.5px; color: var(--ink-soft); margin: 10px 4px 0; }
+
+  /* ---------- モックアップ内部（新トップページ）— ライト固定の別世界 ---------- */
+  .m { font-size: 10px; line-height: 1.7; color: #23372E; background: #F7FAF7; }
+  .m * { box-sizing: border-box; }
+  .m .nav {
+    display: flex; align-items: center; gap: 12px; padding: 10px 18px;
+    background: rgba(255,255,255,.92); border-bottom: 1px solid #E4EEE7;
+  }
+  .m .logo { font-weight: 800; font-size: 12px; color: #2F7A5B; letter-spacing: .04em; }
+  .m .logo small { display: block; font-size: 7px; font-weight: 600; color: #7A9285; letter-spacing: .1em; }
+  .m .links { display: flex; gap: 12px; margin-left: auto; font-size: 9px; color: #43574B; font-weight: 600; }
+  .m .cta-mini {
+    background: #DB6B47; color: #fff; font-weight: 700; font-size: 9px;
+    border-radius: 999px; padding: 5px 12px; white-space: nowrap;
+  }
+  .m .links span { white-space: nowrap; }
+  .m .hero {
+    position: relative; padding: 34px 24px 30px;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(244,201,93,.35) 0 28px, transparent 29px),
+      radial-gradient(circle at 92% 42%, rgba(219,107,71,.25) 0 16px, transparent 17px),
+      radial-gradient(circle at 78% 55%, rgba(169,217,190,.9) 0 22px, transparent 23px),
+      linear-gradient(150deg, #E4F2EA, #F7FAF7 65%);
+  }
+  .m .hero .en { font-size: 8px; letter-spacing: .22em; color: #2F7A5B; font-weight: 700; text-transform: uppercase; }
+  .m .hero h1 { font-size: 19px; line-height: 1.5; margin: 6px 0 8px; font-weight: 800; }
+  .m .hero h1 em { font-style: normal; background: linear-gradient(transparent 70%, #F4C95D 70%); }
+  .m .hero p { font-size: 9px; color: #5A6E63; max-width: 34em; margin: 0 0 14px; }
+  .m .hero .btns { display: flex; gap: 8px; }
+  .m .btn-p { background: #DB6B47; color: #fff; font-weight: 700; font-size: 9.5px; border-radius: 999px; padding: 7px 18px; }
+  .m .btn-s { background: #fff; color: #2F7A5B; font-weight: 700; font-size: 9.5px; border-radius: 999px; padding: 7px 18px; border: 1.2px solid #A9D9BE; }
+  .m .quickfacts {
+    display: flex; gap: 8px; padding: 12px 18px; flex-wrap: wrap;
+    background: #fff; border-bottom: 1px solid #EBF2ED;
+  }
+  .m .qf {
+    font-size: 8.5px; font-weight: 700; color: #2F7A5B; background: #E4F2EA;
+    border-radius: 999px; padding: 4px 11px;
+  }
+  .m .sec { padding: 22px 18px; }
+  .m .sec .en { font-size: 7.5px; letter-spacing: .2em; color: #2F7A5B; font-weight: 700; text-transform: uppercase; }
+  .m .sec h2 { font-size: 13px; margin: 2px 0 10px; font-weight: 800; display: block; }
+  .m .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .m .card {
+    background: #fff; border-radius: 12px; padding: 12px; border: 1px solid #E4EEE7;
+    box-shadow: 0 1px 6px rgba(35,55,46,.05);
+  }
+  .m .card .ph { height: 44px; border-radius: 8px; background: linear-gradient(135deg, #A9D9BE, #DDEFE4); margin-bottom: 8px; display: flex; align-items: center; justify-content: center; color: #2F7A5B; font-size: 8px; font-weight: 700; }
+  .m .card .ph.f2 { background: linear-gradient(135deg, #F4C95D, #FBE9BD); color: #8A6A1D; }
+  .m .card .ph.f3 { background: linear-gradient(135deg, #E9A98F, #F6DCD0); color: #93472C; }
+  .m .card b { font-size: 10px; display: block; margin-bottom: 2px; }
+  .m .card span { font-size: 8.5px; color: #5A6E63; display: block; line-height: 1.6; }
+  .m .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .m .step { background: #fff; border: 1px solid #E4EEE7; border-radius: 10px; padding: 10px 8px; text-align: center; }
+  .m .step .n { width: 18px; height: 18px; border-radius: 50%; background: #2F7A5B; color: #fff; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 5px; }
+  .m .step b { font-size: 8.5px; display: block; }
+  .m .loc2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .m .loc { background: #fff; border: 1px solid #E4EEE7; border-radius: 12px; padding: 12px; }
+  .m .loc .map { height: 40px; border-radius: 8px; background: repeating-linear-gradient(45deg, #EAF3ED, #EAF3ED 6px, #F3F8F4 6px, #F3F8F4 12px); margin-bottom: 8px; }
+  .m .loc b { font-size: 9.5px; display: block; }
+  .m .loc span { font-size: 8px; color: #5A6E63; display: block; }
+  .m .banner {
+    margin: 0 18px 22px; background: #2F7A5B; color: #fff; border-radius: 14px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px; justify-content: space-between;
+  }
+  .m .banner b { font-size: 11px; display: block; }
+  .m .banner span { font-size: 8.5px; opacity: .85; }
+  .m .banner .btn-p { flex-shrink: 0; }
+  .m .foot { background: #23372E; color: #B9CCC0; font-size: 7.5px; padding: 14px 18px; line-height: 1.8; }
+
+  /* モバイルモック */
+  .m.mob .nav { padding: 8px 12px; }
+  .m.mob .links { display: none; }
+  .m.mob .burger { margin-left: auto; display: flex; flex-direction: column; gap: 2.5px; }
+  .m.mob .burger i { width: 14px; height: 1.6px; background: #2F7A5B; border-radius: 2px; display: block; }
+  .m.mob .hero { padding: 24px 16px 22px; }
+  .m.mob .hero h1 { font-size: 15px; }
+  .m.mob .cards3, .m.mob .loc2 { grid-template-columns: 1fr; }
+  .m.mob .flow { grid-template-columns: 1fr 1fr; }
+  .m.mob .fixedcta {
+    position: sticky; bottom: 0; background: rgba(255,255,255,.95);
+    border-top: 1px solid #E4EEE7; padding: 8px 12px; display: flex; gap: 8px;
+  }
+  .m.mob .fixedcta .btn-p, .m.mob .fixedcta .btn-s { flex: 1; text-align: center; }
+
+  /* ---------- コンポーネント見本 ---------- */
+  .comps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 24px 0; }
+  .comp { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .comp .t { font-size: 12px; color: var(--ink-soft); font-weight: 700; margin-bottom: 12px; letter-spacing: .06em; }
+  .comp .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .btn-demo-p { background: var(--coral); color: #fff; font-weight: 700; font-size: 13.5px; border-radius: 999px; padding: 9px 22px; display: inline-block; }
+  .btn-demo-s { background: transparent; color: var(--mint-deep); font-weight: 700; font-size: 13.5px; border-radius: 999px; padding: 8px 21px; border: 1.5px solid var(--mint-sign); display: inline-block; }
+  .chip-demo { font-size: 12.5px; font-weight: 600; color: var(--mint-deep); background: var(--mint-tint); border-radius: 999px; padding: 4px 14px; display: inline-block; }
+
+  /* ---------- 実装方針テーブル ---------- */
+  .plan-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 20px 0; }
+  .plan-table th, .plan-table td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .plan-table th { font-size: 12.5px; color: var(--ink-soft); letter-spacing: .06em; white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+
+  footer.doc {
+    margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--ink-soft);
+  }
+</style>
+
+<header class="doc">
+  <div class="inner">
+    <p class="eyebrow">Design Proposal</p>
+    <h1 class="maru">ainabelle.com リニューアル<br>デザイン設計書</h1>
+    <p class="lead">就労継続支援B型事業所「アイナベル」（枚方・京都伏見）のWebサイトを、利用希望者とそのご家族・支援機関に「安心して問い合わせられる」今どきのサイトへ再構築するためのデザイン設計です。</p>
+    <div class="meta">
+      <span>対象サイト <b>ainabelle.com</b></span>
+      <span>作成日 <b>2026年7月17日</b></span>
+      <span>フェーズ <b>デザイン設計（実装前）</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <h2><span class="no">01</span>現状サイトの課題</h2>
+  <p class="sub">現行サイトは1ページ構成（Home / photos / 代表挨拶 / map / 提携先）。看板やロゴのミントグリーンという良い資産がある一方、以下の課題があります。</p>
+  <div class="issues">
+    <div class="issue"><div class="tag">情報設計</div><div class="body">「利用を検討している人が知りたいこと」（対象者・作業内容・工賃・一日の流れ・利用開始までの手順）がページとして存在しない。見学希望者は電話番号を探すしかない。</div></div>
+    <div class="issue"><div class="tag">導線</div><div class="body">問い合わせフォームがなく、CTA（見学申込み）が定義されていない。スマホで最重要な「電話する」「LINE/フォームで相談」ボタンが常時見える設計になっていない。</div></div>
+    <div class="issue"><div class="tag">信頼性</div><div class="body">専門スタッフ常駐・関西医大教授のメッセージ・カフェ/バルーン事業という強い差別化要素が、写真の羅列に埋もれて構造化されていない。</div></div>
+    <div class="issue"><div class="tag">ビジュアル</div><div class="body">ブランドカラー（看板のミントグリーン）がサイトのUIにほぼ反映されておらず、汎用テーマの印象。写真は良いが階層とリズムがない。</div></div>
+    <div class="issue"><div class="tag">アクセシビリティ</div><div class="body">障害のある方・そのご家族が主な閲覧者であるにもかかわらず、文字サイズ・コントラスト・構造化見出しへの配慮が弱い。福祉サイトとして最優先で改善すべき点。</div></div>
+  </div>
+
+  <h2><span class="no">02</span>デザインコンセプト</h2>
+  <p class="sub">看板に書かれたブランドの言葉をそのまま設計思想にします。</p>
+  <div class="concept">
+    <p class="phrase maru">「<em>relax &amp; my rhythm</em>」を、<br>そのまま画面にする。</p>
+    <p style="color: var(--ink-soft); font-size: 14.5px; margin: 10px 0 0;">急かさない・迷わせない・威圧しない。ミントグリーンの余白と丸みのある形で「ここなら通えそう」という空気をつくり、バルーンとカフェという明るい仕事内容を色のアクセントとして散らします。かわいすぎず、福祉施設としての信頼感（専門職常駐・医大教授の推薦）は端正なタイポグラフィで担保します。</p>
+    <div class="keywords">
+      <span class="kw">やわらかい（丸ゴシック・角丸）</span>
+      <span class="kw">きちんとしている（余白・整列）</span>
+      <span class="kw">あかるい（バルーンの色）</span>
+      <span class="kw">迷わない（CTA常時表示）</span>
+    </div>
+  </div>
+
+  <h2><span class="no">03</span>カラーパレット</h2>
+  <p class="sub">実店舗の看板色を起点に構成。ミントは「面」で使い、文字にはコントラスト確保済みの濃色を使い分けます。</p>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:#A9D9BE"></div><div class="info"><b>看板ミント</b><code>#A9D9BE</code><div class="use">ヒーロー背景・装飾・罫線。文字には使わない</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#2F7A5B"></div><div class="info"><b>ディープミント</b><code>#2F7A5B</code><div class="use">見出し・リンク・アイコン（白地でAA 4.5:1確保）</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#23372E"></div><div class="info"><b>スミグリーン</b><code>#23372E</code><div class="use">本文テキスト・フッター。純黒より柔らかい</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F7FAF7; border-bottom:1px solid var(--line)"></div><div class="info"><b>生成りホワイト</b><code>#F7FAF7</code><div class="use">地色。純白でなく微かに緑に寄せる</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#DB6B47"></div><div class="info"><b>コーラル</b><code>#DB6B47</code><div class="use">CTA（見学申込み）専用。1画面に1〜2個まで</div></div></div>
+    <div class="swatch"><div class="chip" style="background:#F4C95D"></div><div class="info"><b>サンイエロー</b><code>#F4C95D</code><div class="use">蛍光マーカー風下線・バルーン装飾のみ</div></div></div>
+  </div>
+  <div class="note"><b>ルール：</b>コーラルは「行動してほしい場所」だけに使う予約色。ページ全体はミント2色＋生成りで静かに保ち、CTAだけが自然に目に入る配分（面積比でミント系9：コーラル1以下）にします。</div>
+
+  <h2><span class="no">04</span>タイポグラフィ</h2>
+  <p class="sub">和文2書体＋欧文1書体。閲覧者層を考慮し、本文は16px以上・行間1.9を基準にします。</p>
+  <div class="typerow">
+    <div class="label"><b>見出し</b>Zen Maru Gothic<br>(Google Fonts / Bold)</div>
+    <div class="maru" style="font-size: 24px; font-weight: 700; line-height: 1.5;">リラックスして、<br>自分のリズムで働ける場所。</div>
+  </div>
+  <div class="typerow">
+    <div class="label"><b>本文</b>Noto Sans JP<br>(Regular / 16px〜)</div>
+    <div style="font-size: 15px;">保育士、社会福祉士、介護福祉士、認定心理士、カウンセラー等の専門スタッフが常駐。体調に応じてカウンセリングサポートが無料で受けられます。</div>
+  </div>
+  <div class="typerow">
+    <div class="label"><b>欧文アクセント</b>Quicksand<br>(セクションラベル用)</div>
+    <div style="font-size: 13px; letter-spacing: .24em; color: var(--mint-deep); font-weight: 700;">RELAX &amp; MY RHYTHM — SINCE 2024</div>
+  </div>
+  <ul>
+    <li>型スケール：13 / 16 / 18 / 22 / 28 / 38px（1.25倍基準）。見出しは丸ゴシックで温度を、本文はNoto Sansで可読性を担保</li>
+    <li>英字ラベル（HOME, PHOTOS…）は現行の名残として使わず、<strong>日本語主体のナビ</strong>に変更（「アイナベルについて」「見学のながれ」等）</li>
+  </ul>
+
+  <h2><span class="no">05</span>サイト構成（新しい情報設計）</h2>
+  <p class="sub">現行の1ページ構成から、利用検討者の意思決定順に沿った6ページ構成へ。</p>
+  <div class="ia">
+    <div class="ia-page home"><div class="name">ホーム <span class="path">/</span></div><div class="desc">キャッチ＋3つの特徴（バルーン・カフェ・専門職常駐）＋見学CTA。現行Homeの内容を再構成</div></div>
+    <div class="ia-page"><div class="name">アイナベルについて <span class="path">/about</span></div><div class="desc">理念・代表挨拶・木下教授メッセージ・スタッフ紹介（専門資格を明示して信頼性を担保）</div></div>
+    <div class="ia-page"><div class="name">お仕事と一日の流れ <span class="path">/work</span> <span class="badge-new">新設</span></div><div class="desc">バルーンブーケ製造・カフェ業務の具体的な作業内容、タイムスケジュール、工賃・昼食(160円〜)・在宅可・週2日〜の条件</div></div>
+    <div class="ia-page"><div class="name">ご利用までのながれ <span class="path">/guide</span> <span class="badge-new">新設</span></div><div class="desc">対象となる方 → 見学 → 体験 → 受給者証申請 → 利用開始 の4ステップ＋よくある質問</div></div>
+    <div class="ia-page"><div class="name">事業所案内・アクセス <span class="path">/access</span></div><div class="desc">枚方（光善寺駅徒歩5分）・京都（丹波橋駅徒歩4分）を並列カードで。地図・写真・提携先（エシカルフラワー）</div></div>
+    <div class="ia-page"><div class="name">見学・お問い合わせ <span class="path">/contact</span> <span class="badge-new">新設</span></div><div class="desc">フォーム（名前・希望事業所・希望日・相談内容）＋電話番号。全ページのCTAの着地点</div></div>
+  </div>
+  <p style="font-size: 14px; color: var(--ink-soft);">日々の様子（現行photos）は独立ページにせず、ホームに「日々のようす」セクションとしてInstagram最新投稿を埋め込み。更新運用ゼロで鮮度を出します。</p>
+
+  <h2><span class="no">06</span>トップページ モックアップ</h2>
+  <p class="sub">デスクトップとモバイルのレイアウトイメージ。モバイルでは画面下に「電話」「見学を申し込む」を常時固定します。</p>
+
+  <div class="mockshelf">
+    <div>
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span class="url">ainabelle.com</span></div>
+        <div class="m">
+          <div class="nav">
+            <div class="logo maru">アイナベル<small>AINABELLE — 就労継続支援B型</small></div>
+            <div class="links"><span>アイナベルについて</span><span>お仕事と一日の流れ</span><span>ご利用までのながれ</span><span>アクセス</span></div>
+            <span class="cta-mini">見学を申し込む</span>
+          </div>
+          <div class="hero">
+            <div class="en">Relax &amp; My Rhythm</div>
+            <h1 class="maru">リラックスして、<br><em>自分のリズム</em>で働ける場所。</h1>
+            <p>アイナベルは枚方市・京都市伏見区の就労継続支援B型事業所です。バルーンブーケづくりとカフェのお仕事を、専門スタッフと一緒に、あなたのペースで。</p>
+            <div class="btns"><span class="btn-p">見学を申し込む（無料）</span><span class="btn-s">お仕事内容を見る</span></div>
+          </div>
+          <div class="quickfacts">
+            <span class="qf">週2日から通えます</span><span class="qf">在宅ワークOK</span><span class="qf">昼食160円〜</span><span class="qf">駅から徒歩5分以内</span><span class="qf">カウンセリング無料</span>
+          </div>
+          <div class="sec">
+            <span class="en">Features</span>
+            <h2 class="maru">アイナベルの3つの特徴</h2>
+            <div class="cards3">
+              <div class="card"><div class="ph">🎈 バルーン</div><b>バルーンブーケの製造販売</b><span>提携店「エシカルフラワー」で実際に販売される商品づくり。</span></div>
+              <div class="card"><div class="ph f2">☕ カフェ</div><b>カフェのお仕事</b><span>接客や調理補助など、できることから少しずつ。</span></div>
+              <div class="card"><div class="ph f3">🍀 専門職常駐</div><b>専門スタッフのサポート</b><span>保育士・社会福祉士・心理士等が常駐。カウンセリング無料。</span></div>
+            </div>
+          </div>
+          <div class="sec" style="background:#EFF7F1;">
+            <span class="en">Guide</span>
+            <h2 class="maru">ご利用までのながれ</h2>
+            <div class="flow">
+              <div class="step"><div class="n">1</div><b>見学・相談</b></div>
+              <div class="step"><div class="n">2</div><b>体験利用</b></div>
+              <div class="step"><div class="n">3</div><b>受給者証の申請</b></div>
+              <div class="step"><div class="n">4</div><b>利用開始</b></div>
+            </div>
+          </div>
+          <div class="sec">
+            <span class="en">Locations</span>
+            <h2 class="maru">2つの事業所</h2>
+            <div class="loc2">
+              <div class="loc"><div class="map"></div><b>アイナベル 枚方</b><span>京阪 光善寺駅 徒歩5分／10:00–15:30</span></div>
+              <div class="loc"><div class="map"></div><b>アイナベル 京都</b><span>京阪 丹波橋駅 徒歩4分／10:00–15:30</span></div>
+            </div>
+          </div>
+          <div class="banner">
+            <div><b class="maru">まずは、見学におこしください。</b><span>ご本人・ご家族・支援者の方、どなたでもお気軽に。</span></div>
+            <span class="btn-p">見学を申し込む</span>
+          </div>
+          <div class="foot">アイナベル 就労継続支援B型事業所　｜　枚方・京都伏見　｜　提携：エシカルフラワー<br>© Ainabelle</div>
+        </div>
+      </div>
+      <p class="caption">デスクトップ：ヒーロー右上にバルーンを想起させる円の装飾。ファーストビュー内にCTAと安心材料（クイックファクト）を収める。</p>
+    </div>
+
+    <div>
+      <div class="phone">
+        <div class="m mob">
+          <div class="nav">
+            <div class="logo maru">アイナベル<small>就労継続支援B型</small></div>
+            <div class="burger"><i></i><i></i><i></i></div>
+          </div>
+          <div class="hero">
+            <div class="en">Relax &amp; My Rhythm</div>
+            <h1 class="maru">リラックスして、<br><em>自分のリズム</em>で<br>働ける場所。</h1>
+            <p>枚方・京都伏見の就労継続支援B型事業所。バルーンとカフェのお仕事を、あなたのペースで。</p>
+          </div>
+          <div class="quickfacts">
+            <span class="qf">週2日〜</span><span class="qf">在宅OK</span><span class="qf">昼食160円〜</span><span class="qf">駅チカ</span>
+          </div>
+          <div class="sec">
+            <span class="en">Features</span>
+            <h2 class="maru">3つの特徴</h2>
+            <div class="cards3">
+              <div class="card"><div class="ph">🎈 バルーン</div><b>バルーンブーケの製造販売</b></div>
+              <div class="card"><div class="ph f2">☕ カフェ</div><b>カフェのお仕事</b></div>
+            </div>
+          </div>
+          <div class="fixedcta"><span class="btn-s">📞 電話する</span><span class="btn-p">見学を申し込む</span></div>
+        </div>
+      </div>
+      <p class="caption">モバイル：下部固定バーに「電話」＋「見学申込み」。閲覧中いつでも1タップで行動できる。</p>
+    </div>
+  </div>
+
+  <h2><span class="no">07</span>コンポーネント設計</h2>
+  <p class="sub">全ページで使い回す基本パーツ。角丸は大きめ（12〜20px）で統一し、丸みで「やわらかさ」を作ります。</p>
+  <div class="comps">
+    <div class="comp"><div class="t">ボタン</div>
+      <div class="row"><span class="btn-demo-p">見学を申し込む</span><span class="btn-demo-s">くわしく見る</span></div>
+      <p style="font-size: 12.5px; color: var(--ink-soft); margin: 12px 0 0;">主ボタンはコーラル・ピル型・太字。タップ領域は最低44px確保。</p>
+    </div>
+    <div class="comp"><div class="t">ファクトチップ</div>
+      <div class="row"><span class="chip-demo">週2日から</span><span class="chip-demo">在宅OK</span><span class="chip-demo">昼食160円〜</span></div>
+      <p style="font-size: 12.5px; color: var(--ink-soft); margin: 12px 0 0;">利用条件を一目で伝える。ヒーロー直下と各所で再利用。</p>
+    </div>
+    <div class="comp"><div class="t">セクション見出し</div>
+      <div style="font-size: 11px; letter-spacing: .22em; color: var(--mint-deep); font-weight: 700;">FEATURES</div>
+      <div class="maru" style="font-size: 20px; font-weight: 700;">アイナベルの3つの特徴</div>
+      <p style="font-size: 12.5px; color: var(--ink-soft); margin: 12px 0 0;">英字ラベル＋丸ゴシック見出しの2段構成で統一。</p>
+    </div>
+    <div class="comp"><div class="t">マーカー強調</div>
+      <div style="font-size: 17px; font-weight: 700;">見学・相談は<span style="background: linear-gradient(transparent 68%, var(--sun) 68%);">いつでも無料</span>です</div>
+      <p style="font-size: 12.5px; color: var(--ink-soft); margin: 12px 0 0;">サンイエローの蛍光マーカー風下線。1セクション1箇所まで。</p>
+    </div>
+  </div>
+
+  <h2><span class="no">08</span>アクセシビリティと実装方針</h2>
+  <p class="sub">福祉サイトとして、見た目より先に守る基準を決めておきます。</p>
+  <div class="tablewrap">
+  <table class="plan-table">
+    <tr><th>アクセシビリティ</th><td>WCAG 2.1 AA準拠。本文16px以上・行間1.9、テキストコントラスト4.5:1以上、フォーカスリング可視化、代替テキスト必須。ふりがな対応は将来課題として設計上余地を残す</td></tr>
+    <tr><th>レスポンシブ</th><td>モバイルファースト。ブレークポイントは 600 / 960px の2つ。モバイルは下部固定CTAバー（電話＋見学申込み）</td></tr>
+    <tr><th>技術スタック案</th><td>静的サイト（Astro等）＋問い合わせフォームは外部サービス（Googleフォーム or フォームサービス）。現行のInstagram埋め込みは継続し、更新運用の負担を増やさない</td></tr>
+    <tr><th>写真の方針</th><td>現行サイトの実写（施設内・バルーン・カフェ）は最大の資産。イラスト素材に頼らず、明るくトリミングし直して角丸で統一。人物写真は掲載許諾を再確認</td></tr>
+    <tr><th>計測</th><td>「見学申込み」「電話タップ」をコンバージョンとして計測できるようにしておく</td></tr>
+  </table>
+  </div>
+
+  <footer class="doc">
+    <p>本書はデザイン設計フェーズの成果物です。この設計をベースに、トップページの実装（HTMLプロトタイプ）から着手できます。</p>
+  </footer>
+</div>
