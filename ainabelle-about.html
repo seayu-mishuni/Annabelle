@@ -60,6 +60,14 @@
     .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(219, 107, 71, 0.25); }
     .burger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; margin-left: auto; }
     .burger span { display: block; width: 20px; height: 2px; background: var(--mint-deep); border-radius: 2px; }
+    .burger.active span:nth-child(1) { transform: rotate(45deg) translate(8px, 8px); }
+    .burger.active span:nth-child(2) { opacity: 0; }
+    .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+    .nav-links.mobile-open {
+      display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+      background: #fff; padding: 18px 24px 22px; gap: 16px; border-bottom: 1px solid var(--line);
+      box-shadow: 0 10px 24px rgba(35, 55, 46, 0.1);
+    }
     @media (min-width: 768px) {
       .burger { display: none; }
       .nav-links { display: flex; }
@@ -219,6 +227,168 @@
     .stripes-blush {
       background-image: repeating-linear-gradient(100deg, var(--blush) 0px, var(--blush) 34px, #FDEAEC 34px, #FDEAEC 68px);
     }
+    /* ========== モーダル ========== */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 18px;
+      padding: 32px 24px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .modal-content h2 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .modal-content p {
+      font-size: 14px;
+      color: var(--ink-soft);
+      margin-bottom: 24px;
+    }
+
+    .modal-close {
+      background: var(--coral);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* ========== 見学申込みモーダル（事業所選択→フォーム） ========== */
+    .modal-content.apply-content {
+      max-width: 440px;
+      text-align: left;
+    }
+    .modal-content.apply-content h2 { text-align: center; }
+    .modal-content.apply-content > p { text-align: center; }
+
+    .location-choice {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .location-choice-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      padding: 14px 18px;
+      border-radius: 14px;
+      border: 1.5px solid var(--mint-sign);
+      background: #fff;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s, transform 0.15s;
+      width: 100%;
+    }
+    .location-choice-btn:hover {
+      background: var(--mint-tint);
+      transform: translateY(-1px);
+    }
+    .location-choice-btn .loc-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--ink);
+    }
+    .location-choice-btn .loc-sub {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+    .modal-close-text {
+      display: block;
+      margin: 4px auto 0;
+      background: none;
+      border: none;
+      color: var(--ink-soft);
+      font-size: 13px;
+      cursor: pointer;
+      text-align: center;
+      width: 100%;
+    }
+    .apply-back {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--mint-deep);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 14px;
+    }
+    .apply-location-name {
+      color: var(--mint-deep);
+    }
+    .mock-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .mock-form label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mock-form input,
+    .mock-form textarea {
+      font-family: inherit;
+      font-size: 14px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #F9FBFA;
+      color: var(--ink-soft);
+      resize: none;
+    }
+    .apply-note {
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+    .apply-note.small {
+      font-size: 11px;
+      margin-top: 4px;
+    }
+    .apply-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .apply-actions .btn-primary {
+      flex: 1;
+    }
+    .apply-actions .btn-primary[disabled] {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
   </style>
 </head>
 <body>
@@ -234,7 +404,7 @@
         <a href="ainabelle-guide.html">ご利用までのながれ</a>
         <a href="index.html#access">アクセス</a>
       </div>
-      <button class="cta-btn">見学を申し込む</button>
+      <button class="cta-btn" onclick="showModal('apply')">見学を申し込む</button>
       <button class="burger"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -283,7 +453,7 @@
       <h3 class="maru">アイナベルの雰囲気を、実際に見てみませんか。</h3>
       <p>見学は無料です。ご本人・ご家族・支援者の方、どなたでもお気軽に。</p>
     </div>
-    <button class="btn-primary">見学を申し込む</button>
+    <button class="btn-primary" onclick="showModal('apply')">見学を申し込む</button>
   </div>
 
   <footer>
@@ -292,13 +462,115 @@
   </footer>
 
   <div class="fixed-cta">
-    <button class="phone-btn">📞 電話する</button>
-    <button class="apply-btn">見学を申し込む</button>
+    <button class="phone-btn" onclick="showModal('phone')">📞 電話する</button>
+    <button class="apply-btn" onclick="showModal('apply')">見学を申し込む</button>
+  </div>
+
+  <!-- モーダル：見学申込み（事業所選択 → フォーム） -->
+  <div class="modal" id="applyModal">
+    <div class="modal-content apply-content">
+
+      <!-- STEP1: 事業所選択 -->
+      <div id="applyStep1">
+        <h2 class="maru">見学を申し込む</h2>
+        <p>ご希望の事業所をお選びください。</p>
+        <div class="location-choice">
+          <button class="location-choice-btn" onclick="selectApplyLocation('枚方', '070-2227-0070', '4a5e1f2')">
+            <span class="loc-name">アイナベル 枚方</span>
+            <span class="loc-sub">京阪 光善寺駅 徒歩5分／TEL 070-2227-0070</span>
+          </button>
+          <button class="location-choice-btn" onclick="selectApplyLocation('京都', '080-5780-0947', '4b5db9c')">
+            <span class="loc-name">アイナベル 京都</span>
+            <span class="loc-sub">京阪 丹波橋駅 徒歩4分／TEL 080-5780-0947</span>
+          </button>
+        </div>
+        <button class="modal-close-text" onclick="closeModal('applyModal')">閉じる</button>
+      </div>
+
+      <!-- STEP2: 申し込みフォーム -->
+      <div id="applyStep2" style="display:none;">
+        <button class="apply-back" onclick="backToApplyStep1()">← 事業所を選び直す</button>
+        <h2 class="maru">見学申し込み<br><span class="apply-location-name" id="applyLocationName"></span></h2>
+        <p class="apply-note">下記フォームよりご連絡ください。担当スタッフより折り返しご連絡いたします。</p>
+        <div class="mock-form">
+          <label>お名前
+            <input type="text" placeholder="山田 太郎" disabled>
+          </label>
+          <label>電話番号
+            <input type="tel" placeholder="090-0000-0000" disabled>
+          </label>
+          <label>ご希望日時
+            <input type="text" placeholder="例：8月上旬の平日午後" disabled>
+          </label>
+          <label>ご相談内容
+            <textarea rows="3" placeholder="見学希望、体験利用について等、お気軽にご記入ください" disabled></textarea>
+          </label>
+        </div>
+        <p class="apply-note small">※このモックでは送信できません。本実装では既存の Contact Form 7（<span id="applyFormId"></span>）と連携します。</p>
+        <div class="apply-actions">
+          <button class="btn-secondary" onclick="closeModal('applyModal')">閉じる</button>
+          <button class="btn-primary" disabled>送信する</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- モーダル：電話 -->
+  <div class="modal" id="phoneModal">
+    <div class="modal-content">
+      <h2 class="maru">電話でお問い合わせ</h2>
+      <p><strong>アイナベル 枚方</strong><br>070-2227-0070</p>
+      <p><strong>アイナベル 京都</strong><br>080-5780-0947</p>
+      <button class="modal-close" onclick="closeModal('phoneModal')">閉じる</button>
+    </div>
   </div>
 
   <script>
+    // モーダル制御
+    function showModal(type) {
+      const modals = { 'apply': 'applyModal', 'phone': 'phoneModal' };
+      if (modals[type]) {
+        if (type === 'apply') backToApplyStep1();
+        document.getElementById(modals[type]).classList.add('active');
+      }
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    // 見学申込みモーダル：事業所選択 → フォーム
+    function selectApplyLocation(loc, tel, formId) {
+      document.getElementById('applyStep1').style.display = 'none';
+      document.getElementById('applyStep2').style.display = 'block';
+      document.getElementById('applyLocationName').textContent = 'アイナベル ' + loc;
+      document.getElementById('applyFormId').textContent = 'ID: ' + formId;
+    }
+
+    function backToApplyStep1() {
+      document.getElementById('applyStep2').style.display = 'none';
+      document.getElementById('applyStep1').style.display = 'block';
+    }
+
+    // モーダル背景クリックで閉じる
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+    const navLinks = document.querySelector('.nav-links');
     document.querySelector('.burger').addEventListener('click', function() {
-      this.classList.toggle('active');
+      const open = this.classList.toggle('active');
+      navLinks.classList.toggle('mobile-open', open);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelector('.burger').classList.remove('active');
+        navLinks.classList.remove('mobile-open');
+      });
     });
   </script>
 </body>
