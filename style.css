@@ -384,6 +384,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .p-partner__qr { flex-shrink: 0; width: 84px; text-align: center; }
 .p-partner__list .p-partner__qr img { width: 84px; aspect-ratio: 1; object-fit: contain; border-radius: 0; margin: 0; background: #fff; padding: 4px; border: 1px solid var(--line); }
 .p-partner__qr figcaption { font-family: var(--en); font-size: 10px; letter-spacing: .2em; color: #06C755; margin-top: 2px; }
+.p-partner__insta { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-family: var(--en); font-size: 13px; color: var(--ethical); border-bottom: 1px solid currentColor; line-height: 1.6; }
+.p-partner__list .p-partner__insta img { width: 18px; height: 18px; aspect-ratio: auto; margin: 0; border-radius: 0; }
 
 /* ---------- お問い合わせ ---------- */
 .p-contact { padding: 0 16px 96px; }
