@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Zen+Maru+Gothic:wght@500;700&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20261015i">
+  <link rel="stylesheet" href="style.css?v=20261015j">
 </head>
 <body>
 
@@ -389,8 +389,9 @@
         </div>
         <p class="p-contact__mail-h">メールでのお問い合わせ</p>
         <div class="p-contact__mails">
-          <a class="c-btn c-btn--white" href="mailto:info@ainabelle.com"><span><small>枚方</small>info@ainabelle.com</span><span class="c-arrow"></span></a>
-          <a class="c-btn c-btn--white" href="mailto:kyoto1@ainabelle.com"><span><small>京都</small>kyoto1@ainabelle.com</span><span class="c-arrow"></span></a>
+          <!-- 迷惑メール対策：アドレスはHTMLに直接書かず、main.js で data-u / data-d から組み立てる -->
+          <a class="c-btn c-btn--white js-mail" data-u="info" data-d="ainabelle.com"><span><small>枚方</small><span class="js-mail__addr">メールアドレスを表示するにはJavaScriptを有効にしてください</span></span><span class="c-arrow"></span></a>
+          <a class="c-btn c-btn--white js-mail" data-u="kyoto1" data-d="ainabelle.com"><span><small>京都</small><span class="js-mail__addr">メールアドレスを表示するにはJavaScriptを有効にしてください</span></span><span class="c-arrow"></span></a>
         </div>
       </div>
     </section>
@@ -421,6 +422,6 @@
     <li><a class="l-fixed__web" href="#contact"><span>📅</span>見学予約</a></li>
   </ul>
 
-  <script src="main.js?v=20261015i"></script>
+  <script src="main.js?v=20261015j"></script>
 </body>
 </html>

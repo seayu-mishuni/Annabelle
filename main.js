@@ -31,6 +31,13 @@ const io = new IntersectionObserver(entries => {
 }, { rootMargin: '0px 0px -10% 0px' });
 document.querySelectorAll('[data-anime="fadeUp"]').forEach(el => io.observe(el));
 
+// メールアドレス：迷惑メール業者の自動収集を避けるため、表示時に組み立てる
+document.querySelectorAll('.js-mail').forEach(a => {
+  const addr = a.dataset.u + '@' + a.dataset.d;
+  a.href = 'mailto:' + addr;
+  a.querySelector('.js-mail__addr').textContent = addr;
+});
+
 // Q&A アコーディオン
 document.querySelectorAll('.l-faq__q button').forEach(btn => {
   btn.addEventListener('click', () => {
