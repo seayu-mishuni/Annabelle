@@ -1,7 +1,7 @@
 /* =========================================================
    アイナベル site-v2
    参考：gerbera-clinic.jp の構成（明朝＋欧文セリフ、淡いベージュ地、グラデ見出し）
-   配色：参考/ のロゴ（枚方＝セージ、京都＝ティール、エシカルフラワー＝ディープティール）＋カラーチャート
+   配色：参考/ のロゴ（枚方＝セージ、京都＝ティール、Ethical Flower＝ディープティール）＋カラーチャート
    ========================================================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,7 +16,7 @@
   --gray: #EAE4E9;
   --sage: #84B99C;      /* 枚方ロゴ */
   --teal: #5BA89A;      /* 京都ロゴ */
-  --ethical: #01474F;   /* エシカルフラワー */
+  --ethical: #01474F;   /* Ethical Flower */
   --sage-deep: #4B8A6E;
   --rose: #C98A98;
   --ink: #4A4949;      /* ロゴの文字色 */
@@ -136,8 +136,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .l-header__access svg { width: 20px; height: 20px; fill: var(--sage); }
 .l-header__logo { text-align: center; line-height: 1; }
-.l-header__logo__sub { display: block; font-family: var(--logo); font-size: 11px; color: var(--ink); letter-spacing: .02em; margin-bottom: 2px; }
-.l-header__logo__main { font-family: var(--logo); font-size: 26px; letter-spacing: .02em; color: var(--ink); }
+.l-header__logo__sub { display: block; font-family: var(--en); font-weight: 700; font-variation-settings: "opsz" 11; font-size: 11px; color: var(--ink); letter-spacing: .02em; margin-bottom: 2px; }
+.l-header__logo__main img { height: 22px; width: auto; margin: 0 auto; }   /* 社名は元ロゴから切り出した画像 */
 .l-header__nav, .l-header__reserve { display: none; }
 .l-header__ham { width: 56px; height: 56px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; position: relative; z-index: 120; }
 .l-header__ham span { width: 24px; height: 1px; background: var(--ink); transition: transform .3s, opacity .3s; }
@@ -173,7 +173,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .l-drawer.is-open { opacity: 1; visibility: visible; }
 .l-drawer__inner { padding: 90px 32px 40px; max-width: 480px; margin: 0 auto; }
-.l-drawer__logo { font-family: var(--logo); font-size: 34px; text-align: center; color: var(--ink); margin-bottom: 24px; }
+.l-drawer__logo { margin-bottom: 24px; }
+.l-drawer__logo img { width: 200px; margin: 0 auto; }
 .l-drawer__list { margin-bottom: 32px; }
 .l-drawer__list a { display: flex; align-items: baseline; gap: 16px; padding: 14px 4px; border-bottom: 1px solid var(--line); }
 .l-drawer__list span { font-family: var(--en); font-size: 13px; color: var(--sage-deep); width: 76px; letter-spacing: .12em; }
@@ -192,9 +193,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .p-mv__content { position: relative; margin-top: -190px; text-align: center; padding: 0 16px 32px; }
 /* ロゴの書体構成：太いセリフのキャッチ → 細いセリフの説明 → 極太ディドーの社名 */
-.p-mv__catch { font-family: var(--logo); font-size: clamp(20px, 5.4vw, 30px); color: var(--ink); letter-spacing: .02em; line-height: 1.3; }
+.p-mv__catch svg { display: block; width: min(64vw, 400px); margin: 0 auto -4px; overflow: visible; }
+.p-mv__catch text { font-family: var(--en); font-weight: 700; font-variation-settings: "opsz" 11; fill: var(--ink); }   /* ロゴ同様アーチ状 */
 .p-mv__en { font-family: var(--en); font-size: clamp(11px, 2.9vw, 15px); color: var(--ink); line-height: 1.35; letter-spacing: .01em; margin-top: 6px; }
-.p-mv__h { font-family: var(--logo); font-weight: 400; font-size: clamp(58px, 17vw, 120px); line-height: 1.05; letter-spacing: 0; color: var(--ink); }
+.p-mv__h img { width: min(80vw, 560px); margin: 10px auto 0; }
 .p-mv__h::after {   /* 社名下の飾り罫 */
   content: ""; display: block; width: min(80%, 420px); height: 22px; margin: 4px auto 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 24' fill='%2384B99C'%3E%3Cpath d='M0 12L97 11.2V12.8Z'/%3E%3Cpath d='M240 12L143 11.2V12.8Z'/%3E%3Cpath d='M120 1Q122.75 9.25 131 12Q122.75 14.75 120 23Q117.25 14.75 109 12Q117.25 9.25 120 1Z'/%3E%3Cpath d='M103 5Q104.75 10.25 110 12Q104.75 13.75 103 19Q101.25 13.75 96 12Q101.25 10.25 103 5Z'/%3E%3Cpath d='M137 5Q138.75 10.25 144 12Q138.75 13.75 137 19Q135.25 13.75 130 12Q135.25 10.25 137 5Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
@@ -283,7 +285,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .p-link__item:hover .p-link__bg img { transform: scale(1.05); }
 .p-link__body { padding: 24px 24px 28px; line-height: 1.7; }
 /* ロゴ下部の HIRAKATA / KYOTO（ボール端の太いセリフ・広い字間） */
-.p-link__en { font-family: var(--logo); letter-spacing: .4em; font-size: 22px; color: var(--accent); margin-right: -.4em; }
+.p-link__en { font-family: var(--en); font-weight: 500; font-variation-settings: "opsz" 11; letter-spacing: .4em; font-size: 22px; color: var(--accent); margin-right: -.4em; }
 .p-link__ttl { font-weight: 400; font-size: 21px; letter-spacing: .14em; margin-bottom: 8px; }
 .p-link__info { font-size: 12px; color: var(--ink-soft); }
 .p-link__tel { display: inline-block; margin-top: 14px; background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 24px; font-family: var(--en); font-size: 15px; letter-spacing: .1em; }
@@ -351,21 +353,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- 提携先 ---------- */
 .p-partner { padding: 96px 16px; }
-/* エシカルフラワーのロゴ風：丸ゴシックのリボン＋細身のディドー */
-.p-partner__name { text-align: center; color: var(--ethical); margin-bottom: 24px; }
-.p-partner__ribbon { display: inline-block; position: relative; padding: 0 22px; }
-.p-partner__ribbon span {
-  display: inline-block; font-family: "Zen Maru Gothic", var(--sans); font-weight: 700;
-  font-size: clamp(12px, 3.4vw, 15px); letter-spacing: .08em; line-height: 1;
-  padding: 7px 16px; border-top: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+/* Ethical Flowerのロゴ風：アーチ状のリボン（SVG）＋ディドー体。比率は元ロゴに合わせる */
+.p-partner__name { display: table; margin: 0 auto 24px; text-align: center; color: var(--ethical); }
+.p-partner__ribbon { display: block; width: 66%; margin: 0 auto 2px; overflow: visible; }
+.p-partner__ribbon text { font-family: "Zen Maru Gothic", var(--sans); letter-spacing: 0; }
+.p-partner__en {
+  font-family: var(--en); font-weight: 500;
+  font-variation-settings: "opsz" 11;   /* 大きくしても細線が細くなりすぎないように */
+  font-size: clamp(44px, 12.5vw, 80px); line-height: 1.05; letter-spacing: .01em;
 }
-.p-partner__ribbon::before, .p-partner__ribbon::after {   /* リボンの両端 */
-  content: ""; position: absolute; top: 6px; width: 22px; height: calc(100% - 0px);
-  border: 1.5px solid currentColor;
-}
-.p-partner__ribbon::before { left: 0; border-right: 0; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 45% 50%); }
-.p-partner__ribbon::after { right: 0; border-left: 0; clip-path: polygon(0 0, 100% 0, 55% 50%, 100% 100%, 0 100%); }
-.p-partner__en { font-family: var(--en); font-weight: 400; font-size: clamp(44px, 12vw, 76px); line-height: 1.15; letter-spacing: .02em; }
 .p-partner__lead { text-align: center; font-size: 14px; margin-bottom: 40px; color: var(--ethical); }
 .p-partner__list b { color: var(--ethical); }
 .p-partner__list { max-width: 960px; margin: 0 auto; display: grid; gap: 24px; }
@@ -394,9 +390,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- フッター ---------- */
 .l-footer { background: #fff; color: var(--ink); text-align: center; padding: 56px 16px 32px; border-top: 4px solid var(--sage); }
-.l-footer__catch { font-family: var(--logo); font-size: 17px; line-height: 1.2; }
-.l-footer__logo { font-family: var(--logo); font-size: 46px; line-height: 1.1; }
-.l-footer__area { font-family: var(--logo); font-size: 14px; letter-spacing: .4em; margin: 6px 0 12px; color: var(--sage-deep); }
+.l-footer__catch { font-family: var(--en); font-weight: 700; font-variation-settings: "opsz" 11; font-size: 16px; line-height: 1.2; }
+.l-footer__logo img { width: 220px; margin: 6px auto 4px; }
+.l-footer__area { font-family: var(--en); font-weight: 500; font-variation-settings: "opsz" 11; font-size: 14px; letter-spacing: .4em; margin: 6px 0 12px; color: var(--sage-deep); }
 .l-footer__area i { font-style: normal; color: var(--teal); margin: 0 .3em; }
 .l-footer__sub { font-size: 12px; color: var(--ink-soft); margin-bottom: 28px; }
 .l-footer__nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 13px; margin-bottom: 32px; }
