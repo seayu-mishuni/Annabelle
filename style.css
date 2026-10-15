@@ -187,6 +187,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .p-mv__slide.is-active { opacity: 1; }
 .p-mv__slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 7s linear; }
 .p-mv__slide.is-active img { transform: scale(1); }
+.p-mv__img--sign { object-position: 40% 35%; }
+@media (min-width: 900px) { .p-mv__img--sign { object-position: 30% 8%; } }   /* PCは看板を上に寄せてロゴ文字と重ならないように */
 .p-mv__slider::after {
   content: ""; position: absolute; inset: auto 0 0; height: 62%;
   background: linear-gradient(rgba(247, 243, 238, 0), rgba(247, 243, 238, .85) 45%, var(--base) 80%);
