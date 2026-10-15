@@ -292,6 +292,12 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .p-link__ttl { font-weight: 400; font-size: 21px; letter-spacing: .14em; margin-bottom: 8px; }
 .p-link__info { font-size: 12px; color: var(--ink-soft); }
 .p-link__tel { display: inline-block; margin-top: 14px; background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 24px; font-family: var(--en); font-size: 15px; letter-spacing: .1em; }
+.p-link__insta { display: flex; align-items: center; justify-content: center; gap: 6px; width: fit-content; margin: 12px auto 0; font-family: var(--en); font-size: 13px; color: var(--ink); border-bottom: 1px solid currentColor; line-height: 1.6; }
+.p-link__insta img { width: 18px; height: 18px; }
+.p-link__map { margin-top: 18px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 10; }
+.p-link__map iframe { width: 100%; height: 100%; border: 0; display: block; }
+.p-link__maplink { display: inline-block; margin-top: 10px; font-size: 12px; color: var(--accent); border-bottom: 1px solid currentColor; line-height: 1.6; }
+.p-link__maplink::before { content: "📍 "; }
 
 /* ---------- 写真ループ ---------- */
 .c-loop { overflow: hidden; padding: 8px 0 80px; }
@@ -306,6 +312,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (min-width: 900px) { .p-about__wrapper { grid-template-columns: 1fr 1fr; gap: 64px; } }
 .p-about__img { position: relative; }
 .p-about__img img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 200px 200px 4px 4px; }
+.p-about__img img[src="photo_dsc4703.jpg"] { object-position: 40% center; }   /* 看板が中央に来るように */
 .p-about__img::before { content: ""; position: absolute; inset: 18px -12px -12px 18px; border: 1px solid var(--sage); border-radius: 200px 200px 4px 4px; z-index: -1; }
 .p-about__content .c-ttl { text-align: left; }
 .p-about__txt { font-size: 14px; margin-bottom: 32px; }
@@ -377,7 +384,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .p-partner__list { max-width: 960px; margin: 0 auto; display: grid; gap: 24px; }
 @media (min-width: 900px) { .p-partner__list { grid-template-columns: 1fr 1fr; } }
-.p-partner__list img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; margin-bottom: 12px; }
+.p-partner__list > li > img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; margin-bottom: 12px; }
 .p-partner__list b { font-weight: 500; font-size: 16px; letter-spacing: .1em; }
 .p-partner__list p { font-size: 12px; color: var(--ink-soft); line-height: 1.8; }
 .p-partner__info { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
