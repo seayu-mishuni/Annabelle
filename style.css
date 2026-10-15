@@ -191,21 +191,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   content: ""; position: absolute; inset: auto 0 0; height: 62%;
   background: linear-gradient(rgba(247, 243, 238, 0), rgba(247, 243, 238, .85) 45%, var(--base) 80%);
 }
-.p-mv__content { position: relative; margin-top: -130px; text-align: center; padding: 0 16px 32px; }
+.p-mv__content { position: relative; margin-top: -100px; text-align: center; padding: 0 16px 32px; }
 /* ロゴの書体構成：太いセリフのキャッチ → 細いセリフの説明 → 極太ディドーの社名 */
-.p-mv__catch svg { display: block; width: min(42vw, 260px); margin: 0 auto -4px; overflow: visible; }
+.p-mv__catch svg { display: block; width: min(30vw, 180px); margin: 0 auto -4px; overflow: visible; }
 .p-mv__catch text { font-family: var(--en); font-weight: 700; font-variation-settings: "opsz" 11; fill: var(--ink); }   /* ロゴ同様アーチ状 */
-.p-mv__en { font-family: var(--en); font-size: clamp(9px, 2.1vw, 11px); color: var(--ink); line-height: 1.35; letter-spacing: .01em; margin-top: 3px; }
-.p-mv__h img { width: min(52vw, 340px); margin: 6px auto 0; }
+.p-mv__en { font-family: var(--en); font-size: clamp(7px, 1.6vw, 9px); color: var(--ink); line-height: 1.35; letter-spacing: .01em; margin-top: 3px; }
+.p-mv__h img { width: min(36vw, 230px); margin: 4px auto 0; }
 .p-mv__h::after {   /* 社名下の飾り罫 */
-  content: ""; display: block; width: min(56vw, 360px); height: 16px; margin: 4px auto 0;
+  content: ""; display: block; width: min(40vw, 250px); height: 12px; margin: 3px auto 0;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 24' fill='%2384B99C'%3E%3Cpath d='M0 12L97 11.2V12.8Z'/%3E%3Cpath d='M240 12L143 11.2V12.8Z'/%3E%3Cpath d='M120 1Q122.75 9.25 131 12Q122.75 14.75 120 23Q117.25 14.75 109 12Q117.25 9.25 120 1Z'/%3E%3Cpath d='M103 5Q104.75 10.25 110 12Q104.75 13.75 103 19Q101.25 13.75 96 12Q101.25 10.25 103 5Z'/%3E%3Cpath d='M137 5Q138.75 10.25 144 12Q138.75 13.75 137 19Q135.25 13.75 130 12Q135.25 10.25 137 5Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
 }
 .p-mv__sub { font-size: 12px; letter-spacing: .3em; color: var(--ink-soft); margin-top: 8px; }
 .p-mv__copy { font-size: clamp(17px, 4.4vw, 24px); margin-top: 16px; color: var(--sage-deep); letter-spacing: .14em; line-height: 1.8; }
 @media (min-width: 900px) {
   .p-mv__slider { aspect-ratio: 16 / 7; }
-  .p-mv__content { margin-top: -190px; }
+  .p-mv__content { margin-top: -150px; }
 }
 
 /* ---------- お知らせ ---------- */
@@ -367,6 +367,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .p-partner__lead { text-align: center; font-size: 14px; margin-bottom: 40px; color: var(--ethical); }
 .p-partner__list b { color: var(--ethical); }
+.p-partner__gallery { max-width: 960px; margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+@media (min-width: 900px) { .p-partner__gallery { gap: 20px; } }
+.p-partner__gallery img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 4px; }
+.p-partner__flyer { position: relative; display: block; }
+.p-partner__flyer span {
+  position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); white-space: nowrap;
+  background: var(--ethical); color: #fff; font-size: 11px; letter-spacing: .08em; padding: 4px 12px; border-radius: 999px;
+}
 .p-partner__list { max-width: 960px; margin: 0 auto; display: grid; gap: 24px; }
 @media (min-width: 900px) { .p-partner__list { grid-template-columns: 1fr 1fr; } }
 .p-partner__list img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; margin-bottom: 12px; }
