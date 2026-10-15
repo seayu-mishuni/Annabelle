@@ -249,7 +249,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   border-radius: 4px; padding: 20px 10px;
   text-align: center; line-height: 1.6;
 }
-.p-work__ico { display: block; font-size: 26px; margin-bottom: 6px; }
+.p-work__ico {
+  display: grid; place-items: center; width: 56px; height: 56px; margin: 0 auto 10px;
+  border-radius: 50%; background: var(--mint); color: var(--sage-deep);   /* 線の色 */
+}
+.p-work__ico svg { width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; }
 .p-work__list b { display: block; font-weight: 500; font-size: 16px; letter-spacing: .12em; color: var(--sage-deep); }
 .p-work__list small { display: block; font-size: 11px; line-height: 1.6; letter-spacing: .02em; color: var(--ink-soft); margin-top: 4px; }
 .p-work__plan { margin-top: 32px; background: #fff; border-radius: 4px; padding: 24px; }
@@ -277,6 +281,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .p-link__tel { display: inline-block; margin-top: 14px; background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 24px; font-family: var(--en); font-size: 15px; letter-spacing: .1em; }
 .p-link__insta { display: flex; align-items: center; justify-content: center; gap: 6px; width: fit-content; margin: 12px auto 0; font-family: var(--en); font-size: 13px; color: var(--ink); border-bottom: 1px solid currentColor; line-height: 1.6; }
 .p-link__insta img { width: 18px; height: 18px; }
+/* Ethical Flower の店舗カードと同じ並び：左に情報、右にLINEのQR */
+.p-link__row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 6px; text-align: left; }
+.p-link__row .p-link__insta { margin: 10px 0 0; }
+.p-link__row .p-link__tel { white-space: nowrap; font-size: 14px; letter-spacing: .03em; padding: 6px 16px; }
+.p-link__qr { flex-shrink: 0; width: 84px; text-align: center; }
+.p-link__qr img { width: 84px; height: 84px; background: #fff; padding: 4px; border: 1px solid var(--line); }
+.p-link__qr figcaption { font-family: var(--en); font-size: 10px; letter-spacing: .2em; color: #06C755; margin-top: 2px; }
 .p-link__map { margin-top: 18px; border-radius: 4px; overflow: hidden; border: 1px solid var(--line); aspect-ratio: 16 / 10; }
 .p-link__map iframe { width: 100%; height: 100%; border: 0; display: block; }
 .p-link__maplink { display: inline-block; margin-top: 10px; font-size: 12px; color: var(--accent); border-bottom: 1px solid currentColor; line-height: 1.6; }
@@ -375,7 +386,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .p-partner__qr { flex-shrink: 0; width: 84px; text-align: center; }
 .p-partner__list .p-partner__qr img { width: 84px; aspect-ratio: 1; object-fit: contain; border-radius: 0; margin: 0; background: #fff; padding: 4px; border: 1px solid var(--line); }
 .p-partner__qr figcaption { font-family: var(--en); font-size: 10px; letter-spacing: .2em; color: #06C755; margin-top: 2px; }
-.p-partner__insta { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-family: var(--en); font-size: 13px; color: var(--ethical); border-bottom: 1px solid currentColor; line-height: 1.6; }
+.p-partner__tel { display: block; width: fit-content; white-space: nowrap; margin-top: 10px; background: var(--ethical); color: #fff; border-radius: 999px; padding: 6px 16px; font-family: var(--en); font-size: 14px; letter-spacing: .03em; }   /* アイナベルの電話ボタンと同じ形 */
+.p-partner__insta { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-family: var(--en); font-size: 13px; color: var(--ethical); border-bottom: 1px solid currentColor; line-height: 1.6; }
 .p-partner__list .p-partner__insta img { width: 18px; height: 18px; aspect-ratio: auto; margin: 0; border-radius: 0; }
 
 /* ---------- お問い合わせ ---------- */
