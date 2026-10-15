@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>アイナベル | 就労継続支援B型事業所（枚方・京都伏見）</title>
+  <meta name="description" content="枚方市・京都市伏見区の就労継続支援B型事業所アイナベル。リラックスして、自分のリズムで働ける場所です。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== ヘッダー ========== -->
+  <header class="l-header">
+    <div class="l-header__wrapper">
+      <a class="l-header__access" href="#access">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z"/></svg>
+        <span>ACCESS</span>
+      </a>
+      <a class="l-header__logo" href="#top">
+        <span class="l-header__logo__sub">relax &amp; my rhythm</span>
+        <span class="l-header__logo__main">Ainabelle</span>
+      </a>
+      <nav class="l-header__nav" aria-label="グローバルナビ">
+        <a href="#about">アイナベルについて</a>
+        <a href="#work">お仕事</a>
+        <a href="#flow">ご利用の流れ</a>
+        <a href="#faq">Q&amp;A</a>
+        <a href="#access">事業所</a>
+      </nav>
+      <a class="l-header__reserve" href="#contact">見学のご予約</a>
+      <button class="l-header__ham" id="ham" aria-label="メニューを開く" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <ul class="l-header__upper">
+      <li><a href="#work"><b>お仕事一覧</b><small>WORK</small></a></li>
+      <li><a href="#contact"><b>見学のご予約</b><small>RESERVE</small></a></li>
+    </ul>
+  </header>
+
+  <!-- ドロワーメニュー -->
+  <div class="l-drawer" id="drawer" aria-hidden="true">
+    <div class="l-drawer__inner">
+      <p class="l-drawer__logo">Ainabelle</p>
+      <ul class="l-drawer__list">
+        <li><a href="#about"><span>ABOUT</span>アイナベルについて</a></li>
+        <li><a href="#work"><span>WORK</span>お仕事</a></li>
+        <li><a href="#feature"><span>FEATURE</span>アイナベルの特徴</a></li>
+        <li><a href="#flow"><span>FLOW</span>ご利用までの流れ</a></li>
+        <li><a href="#faq"><span>Q&amp;A</span>よくあるご質問</a></li>
+        <li><a href="#access"><span>ACCESS</span>事業所・アクセス</a></li>
+        <li><a href="#partner"><span>PARTNER</span>提携先</a></li>
+      </ul>
+      <a class="c-btn c-btn--fill" href="#contact">見学・お問い合わせ</a>
+    </div>
+  </div>
+
+  <main id="top">
+
+    <!-- ========== メインビジュアル ========== -->
+    <section class="p-mv">
+      <div class="p-mv__slider" id="mvSlider">
+        <div class="p-mv__slide is-active"><img src="../素材/2f94bbd2-7914-4ed5-9bcd-0493b858ccd7_0.jpg" alt="明るいダイニングスペース"></div>
+        <div class="p-mv__slide"><img src="../素材/fa40e8f0-b269-4f21-bf43-507db3e18d93_0.jpg" alt="落ち着いた休憩スペース"></div>
+        <div class="p-mv__slide"><img src="../素材/402781b4-92eb-4907-a8e5-8267bfce230e_0.jpg" alt="ハンドメイドの布小物の材料"></div>
+      </div>
+      <div class="p-mv__content">
+        <p class="p-mv__en">relax &amp; my rhythm</p>
+        <h1 class="p-mv__h c-grad">AINABELLE</h1>
+        <p class="p-mv__sub">就労継続支援B型事業所</p>
+        <p class="p-mv__copy">リラックスして、<br class="sp">自分のリズムで働ける場所。</p>
+      </div>
+    </section>
+
+    <!-- ========== お知らせ ========== -->
+    <section class="p-news">
+      <div class="p-news__inner">
+        <h2 class="p-news__ttl">News</h2>
+        <a class="p-news__item" href="#contact">
+          <span class="p-news__date">2024.04.10</span>
+          <span class="p-news__cat">イベント</span>
+          <span class="p-news__txt">ランチ試食見学会を開催します（4/24・4/27 予約制）</span>
+          <span class="c-arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ========== ピックアップバナー ========== -->
+    <section class="p-pickup">
+      <ul class="p-pickup__list">
+        <li data-anime="fadeUp">
+          <a class="p-pickup__bnr p-pickup__bnr--pink" href="#feature">
+            <div class="p-pickup__txt">
+              <small>栄養バランスを考えた</small>
+              <b>ランチのご案内</b>
+              <span>1食 ¥160〜</span>
+            </div>
+            <img src="../素材/1b3b6856-b0fe-4050-9311-491ececcb02d_0.jpg" alt="ランチの写真">
+          </a>
+        </li>
+        <li data-anime="fadeUp">
+          <a class="p-pickup__bnr p-pickup__bnr--mint" href="#work">
+            <div class="p-pickup__txt">
+              <small>日数・時間・場所を選べる</small>
+              <b>自分ペースプラン</b>
+              <span>週2日から／在宅ワークも相談可</span>
+            </div>
+            <img src="../素材/402781b4-92eb-4907-a8e5-8267bfce230e_0.jpg" alt="ハンドメイドの作業風景">
+          </a>
+        </li>
+        <li data-anime="fadeUp">
+          <a class="p-pickup__bnr p-pickup__bnr--lav" href="#partner">
+            <div class="p-pickup__txt">
+              <small>提携店で実際に販売</small>
+              <b>バルーンブーケ <i>×</i> エシカルフラワー</b>
+            </div>
+            <img src="../素材/DC607DEF-8806-4EA7-88FE-FFF252331E33.jpg" alt="エシカルフラワーの店内">
+          </a>
+        </li>
+        <li data-anime="fadeUp">
+          <a class="p-pickup__bnr p-pickup__bnr--cream" href="#feature">
+            <div class="p-pickup__txt">
+              <small>保育士・社会福祉士・心理士 など</small>
+              <b>専門スタッフ常駐</b>
+              <span>カウンセリングサポート無料</span>
+            </div>
+            <img src="../素材/fa40e8f0-b269-4f21-bf43-507db3e18d93_0.jpg" alt="落ち着いた室内">
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ========== お仕事 ========== -->
+    <section class="p-work" id="work">
+      <div class="p-work__bg" aria-hidden="true"></div>
+      <div class="p-work__inner">
+        <div class="c-ttl" data-anime="fadeUp">
+          <p class="c-ttl__en c-grad">Work</p>
+          <h2 class="c-ttl__ja">お仕事</h2>
+        </div>
+        <p class="p-work__lead" data-anime="fadeUp">あなたのペースで、選べるピッタリのお仕事を見つけてください。<br class="pc">体調に合わせて、日数・時間・場所を個別にプランニングします。</p>
+        <ul class="p-work__list">
+          <li data-anime="fadeUp"><span class="p-work__ico">🎈</span><b>製造販売</b><small>バルーンブーケ・ソープフラワー</small></li>
+          <li data-anime="fadeUp"><span class="p-work__ico">✂️</span><b>ハンドメイド</b><small>布小物作成・雑貨製造・検品</small></li>
+          <li data-anime="fadeUp"><span class="p-work__ico">📦</span><b>テーブルワーク</b><small>パッケージング・器具クリーニング</small></li>
+          <li data-anime="fadeUp"><span class="p-work__ico">☕</span><b>接客</b><small>カフェ・イベント出店・リユース販売</small></li>
+          <li data-anime="fadeUp"><span class="p-work__ico">💻</span><b>IT関係</b><small>PC入力・SNS投稿・デザイン作成</small></li>
+          <li data-anime="fadeUp"><span class="p-work__ico">🌱</span><b>出向ワーク</b><small>ファームワーク・本の仕分け など</small></li>
+        </ul>
+        <div class="p-work__plan" data-anime="fadeUp">
+          <p class="p-work__plan__h">こんなプランも可能です</p>
+          <ul>
+            <li>週に2日だけ、接客に関わる仕事をしてみたい</li>
+            <li>午後から2時間だけ、雑貨を作ってみたい</li>
+            <li>体調が悪い日は、家でパソコン入力をしたい</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 事業所リンク ========== -->
+    <section class="p-link" id="access">
+      <ul class="p-link__list">
+        <li class="p-link__item" data-anime="fadeUp">
+          <div class="p-link__bg"><img src="../素材/6fe309cb-6db4-4748-bd06-e7ea5cd4a6e8_0.jpg" alt="アイナベル枚方の外観"></div>
+          <div class="p-link__body">
+            <p class="p-link__en">HIRAKATA</p>
+            <h3 class="p-link__ttl">アイナベル 枚方</h3>
+            <p class="p-link__info">〒573-0094 大阪府枚方市南中振2-80-9<br>京阪「光善寺駅」徒歩5分<br>10:00–15:30（当社カレンダーによる）</p>
+            <a class="p-link__tel" href="tel:07022270070">TEL 070-2227-0070</a>
+          </div>
+        </li>
+        <li class="p-link__item" data-anime="fadeUp">
+          <div class="p-link__bg"><img src="../素材/53fbb1a7-87bc-43b7-aa86-a0ed3ca0fb69_0.jpg" alt="作業のようす（仮画像）"></div>
+          <div class="p-link__body">
+            <p class="p-link__en">KYOTO</p>
+            <h3 class="p-link__ttl">アイナベル 京都</h3>
+            <p class="p-link__info">〒612-8084 京都府京都市伏見区京町八丁目横町67-7 1F<br>京阪「丹波橋駅」徒歩4分／近鉄「丹波橋駅」徒歩7分<br>09:30–15:30（当社カレンダーによる）</p>
+            <a class="p-link__tel" href="tel:08057800947">TEL 080-5780-0947</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ========== 写真ループ ========== -->
+    <div class="c-loop" aria-hidden="true">
+      <div class="c-loop__track">
+        <img src="../素材/2f94bbd2-7914-4ed5-9bcd-0493b858ccd7_0.jpg" alt="">
+        <img src="../素材/1d7b2835-61f1-425c-9fde-ad6c198ccd1a_0.jpg" alt="">
+        <img src="../素材/402781b4-92eb-4907-a8e5-8267bfce230e_0.jpg" alt="">
+        <img src="../素材/53fbb1a7-87bc-43b7-aa86-a0ed3ca0fb69_0.jpg" alt="">
+        <img src="../素材/fa40e8f0-b269-4f21-bf43-507db3e18d93_0.jpg" alt="">
+        <img src="../素材/e87c1045-b65a-47de-9d91-d7d8843fcbc4_0.jpg" alt="">
+        <img src="../素材/1b3b6856-b0fe-4050-9311-491ececcb02d_0.jpg" alt="">
+      </div>
+    </div>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="p-about" id="about">
+      <div class="p-about__wrapper">
+        <div class="p-about__img" data-anime="fadeUp">
+          <img src="../素材/fa40e8f0-b269-4f21-bf43-507db3e18d93_0.jpg" alt="アイナベルの室内">
+        </div>
+        <div class="p-about__content">
+          <div class="c-ttl" data-anime="fadeUp">
+            <p class="c-ttl__en c-grad">About</p>
+            <h2 class="c-ttl__ja">アイナベルについて</h2>
+          </div>
+          <p class="p-about__txt" data-anime="fadeUp">
+            アイナベルは、枚方市南中振と京都市伏見区にある就労継続支援B型事業所です。<br>
+            バルーンブーケの製造販売やカフェ事業をはじめ、地域のイベントにも参加しています。<br><br>
+            保育士・社会福祉士・介護福祉士・認定心理士・カウンセラーなどの専門スタッフが常駐し、カウンセリングサポートも無料で受けられます。<br><br>
+            「毎日来たくなる」ようなリラックスできる空間づくりにこだわっています。
+          </p>
+          <a class="c-btn" href="#feature" data-anime="fadeUp">選ばれる理由<span class="c-arrow"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 特徴（交互グリッド） ========== -->
+    <section class="p-feature" id="feature">
+      <div class="c-ttl" data-anime="fadeUp">
+        <p class="c-ttl__en c-grad">Feature</p>
+        <h2 class="c-ttl__ja">アイナベルの特徴</h2>
+      </div>
+      <div class="l-grid">
+        <div class="l-grid__item" data-anime="fadeUp">
+          <div class="l-grid__img"><img src="../素材/2f94bbd2-7914-4ed5-9bcd-0493b858ccd7_0.jpg" alt="明るいダイニングスペース"></div>
+          <div class="l-grid__content">
+            <p class="l-grid__num">01</p>
+            <h3 class="l-grid__ttl">専門スタッフが<br>いつもそばに</h3>
+            <p class="l-grid__txt">保育士・社会福祉士・介護福祉士・認定心理士・カウンセラーが常駐。お仕事のことも、日々の不安も、気軽に相談できます。カウンセリングサポートは無料です。</p>
+          </div>
+        </div>
+        <div class="l-grid__item" data-anime="fadeUp">
+          <div class="l-grid__img"><img src="../素材/1d7b2835-61f1-425c-9fde-ad6c198ccd1a_0.jpg" alt="ゆったりとした休憩のひととき"></div>
+          <div class="l-grid__content">
+            <p class="l-grid__num">02</p>
+            <h3 class="l-grid__ttl">生活リズムを<br>ととのえる</h3>
+            <p class="l-grid__txt">規則正しい生活リズムは、健康や幸福感に大きく影響します。無理のないワークスケジュールづくりから、人との交流まで、あなたらしい毎日を一緒に整えていきます。</p>
+          </div>
+        </div>
+        <div class="l-grid__item" data-anime="fadeUp">
+          <div class="l-grid__img"><img src="../素材/1b3b6856-b0fe-4050-9311-491ececcb02d_0.jpg" alt="ランチの写真"></div>
+          <div class="l-grid__content">
+            <p class="l-grid__num">03</p>
+            <h3 class="l-grid__ttl">栄養バランスを<br>考えたランチ</h3>
+            <p class="l-grid__txt">1食160円からのランチをご用意しています。みんなでテーブルを囲む時間も、アイナベルの大切なひとときです。<small>※実施内容は事業所により異なる場合があります。</small></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ご利用までの流れ ========== -->
+    <section class="p-flow" id="flow">
+      <div class="c-ttl" data-anime="fadeUp">
+        <p class="c-ttl__en c-grad">Flow</p>
+        <h2 class="c-ttl__ja">ご利用までの流れ</h2>
+      </div>
+      <ol class="p-flow__list">
+        <li data-anime="fadeUp"><span class="p-flow__step">STEP 01</span><b>見学・ご相談</b><p>お電話・メール・LINEからお気軽に。ご本人・ご家族・支援者の方、どなたでもご相談いただけます。</p></li>
+        <li data-anime="fadeUp"><span class="p-flow__step">STEP 02</span><b>体験利用</b><p>実際の作業を体験しながら、ご自身に合ったペースとお仕事を一緒に探します。</p></li>
+        <li data-anime="fadeUp"><span class="p-flow__step">STEP 03</span><b>受給者証の申請</b><p>お住まいの市区町村窓口で申請します。書類の書き方など、スタッフがサポートします。</p></li>
+        <li data-anime="fadeUp"><span class="p-flow__step">STEP 04</span><b>利用開始</b><p>ご希望の日数・時間から。自分ペースプランで無理なくスタートできます。</p></li>
+      </ol>
+    </section>
+
+    <!-- ========== Q&A ========== -->
+    <section class="p-faq" id="faq">
+      <div class="p-faq__wrapper">
+        <div class="c-ttl" data-anime="fadeUp">
+          <p class="c-ttl__en c-grad">Q&amp;A</p>
+          <h2 class="c-ttl__ja">よくあるご質問</h2>
+        </div>
+        <dl class="p-faq__list">
+          <div class="l-faq__item" data-anime="fadeUp">
+            <dt class="l-faq__q"><button aria-expanded="false">週に何日から通えますか？</button></dt>
+            <dd class="l-faq__a">週2日から利用可能です。ご自身の体調に合わせて、日数や時間を調整できます。</dd>
+          </div>
+          <div class="l-faq__item" data-anime="fadeUp">
+            <dt class="l-faq__q"><button aria-expanded="false">在宅での作業はできますか？</button></dt>
+            <dd class="l-faq__a">内容によっては在宅ワークも可能です。詳しくはご相談ください。</dd>
+          </div>
+          <div class="l-faq__item" data-anime="fadeUp">
+            <dt class="l-faq__q"><button aria-expanded="false">見学だけでも大丈夫ですか？</button></dt>
+            <dd class="l-faq__a">もちろんです。まずは雰囲気を見ていただくだけでも歓迎です。</dd>
+          </div>
+          <div class="l-faq__item" data-anime="fadeUp">
+            <dt class="l-faq__q"><button aria-expanded="false">家族や支援者と一緒に見学できますか？</button></dt>
+            <dd class="l-faq__a">はい、ご本人・ご家族・支援者の方、どなたでもお気軽にお越しください。</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ========== 提携先 ========== -->
+    <section class="p-partner" id="partner">
+      <div class="c-ttl" data-anime="fadeUp">
+        <p class="c-ttl__en c-grad">Partner</p>
+        <h2 class="c-ttl__ja">提携先</h2>
+      </div>
+      <p class="p-partner__lead" data-anime="fadeUp">アイナベルで製作したバルーンブーケは、<br class="sp">バルーンとお花のお店「エシカルフラワー」で<br class="sp">実際に商品として販売されています。</p>
+      <ul class="p-partner__list">
+        <li data-anime="fadeUp">
+          <img src="../素材/DC607DEF-8806-4EA7-88FE-FFF252331E33.jpg" alt="エシカルフラワー本店の店内">
+          <b>エシカルフラワー 本店</b>
+          <p>〒573-0094 大阪府枚方市走谷1丁目11-12-105<br>TEL 090-4411-8700</p>
+        </li>
+        <li data-anime="fadeUp">
+          <img src="../素材/63E6CD4E-9639-4552-AE55-622893F1BFEE.jpg" alt="エシカルフラワー京都店の店内">
+          <b>エシカルフラワー 京都店</b>
+          <p>〒612-8084 京都府京都市伏見区京町八丁目横町67-7 1F<br>TEL 075-606-1386</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ========== お問い合わせ ========== -->
+    <section class="p-contact" id="contact">
+      <div class="p-contact__inner" data-anime="fadeUp">
+        <p class="p-contact__en">Contact</p>
+        <h2 class="p-contact__h">まずは、見学におこしください。</h2>
+        <p class="p-contact__txt">ご本人・ご家族・支援者の方、どなたでもお気軽に。</p>
+        <div class="p-contact__btns">
+          <a class="p-contact__btn" href="tel:07022270070"><small>枚方</small>070-2227-0070</a>
+          <a class="p-contact__btn" href="tel:08057800947"><small>京都</small>080-5780-0947</a>
+        </div>
+        <a class="c-btn c-btn--white" href="mailto:info@ainabelle.com">メールでのお問い合わせ<span class="c-arrow"></span></a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== フッター ========== -->
+  <footer class="l-footer">
+    <p class="l-footer__logo">Ainabelle</p>
+    <p class="l-footer__sub">就労継続支援B型事業所 アイナベル</p>
+    <ul class="l-footer__nav">
+      <li><a href="#about">アイナベルについて</a></li>
+      <li><a href="#work">お仕事</a></li>
+      <li><a href="#flow">ご利用の流れ</a></li>
+      <li><a href="#faq">Q&amp;A</a></li>
+      <li><a href="#access">事業所</a></li>
+      <li><a href="#partner">提携先</a></li>
+    </ul>
+    <small class="l-footer__copy">© 2024 Ainabelle. All rights reserved.</small>
+  </footer>
+
+  <!-- ========== 下部固定ボタン（スマホ） ========== -->
+  <ul class="l-fixed">
+    <li><a class="l-fixed__line" href="#contact"><span>💬</span>LINE</a></li>
+    <li><a class="l-fixed__tel" href="#access"><span>📞</span>電話する</a></li>
+    <li><a class="l-fixed__web" href="#contact"><span>📅</span>見学予約</a></li>
+  </ul>
+
+  <script src="main.js"></script>
+</body>
+</html>
