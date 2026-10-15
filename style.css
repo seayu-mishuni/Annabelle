@@ -231,7 +231,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: absolute; inset: 0;
   background:
     linear-gradient(180deg, rgba(226, 236, 233, .92), rgba(190, 225, 230, .88)),
-    url("../素材/2f94bbd2-7914-4ed5-9bcd-0493b858ccd7_0.jpg") center / cover;
+    url("2f94bbd2-7914-4ed5-9bcd-0493b858ccd7_0.jpg") center / cover;
 }
 .p-work__inner { position: relative; max-width: 960px; margin: 0 auto; }
 .p-work__lead { text-align: center; margin-bottom: 40px; font-size: 14px; }
