@@ -284,10 +284,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- 写真ループ ---------- */
 .c-loop { overflow: hidden; padding: 8px 0 80px; }
-.c-loop__track { display: flex; gap: 12px; width: max-content; animation: loop 50s linear infinite; }
-.c-loop__track img { width: 220px; height: 150px; object-fit: cover; border-radius: 4px; }
-.c-loop__track img:nth-child(even) { margin-top: 28px; }
-@keyframes loop { to { transform: translateX(-50%); } }
+.c-loop__track { display: flex; width: max-content; animation: loop 50s linear infinite; will-change: transform; }
+.c-loop__group { display: flex; gap: 12px; padding-right: 12px; }   /* 同じ写真の組を2つ並べ、ちょうど1組分ずらしてつなぎ目をなくす */
+.c-loop__group img { flex-shrink: 0; width: 220px; height: 150px; object-fit: cover; border-radius: 4px; }
+.c-loop__group img:nth-child(even) { margin-top: 28px; }
+@keyframes loop { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 
 /* ---------- ABOUT ---------- */
 .p-about { padding: 0 16px 96px; }

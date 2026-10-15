@@ -20,10 +20,6 @@ setInterval(() => {
   slides[current].classList.add('is-active');
 }, 5000);
 
-// 写真ループ：途切れないよう中身を複製
-const track = document.querySelector('.c-loop__track');
-track.innerHTML += track.innerHTML;
-
 // スクロールでフェードアップ
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
