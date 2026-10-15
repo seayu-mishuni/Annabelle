@@ -395,6 +395,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (min-width: 600px) { .p-contact__btns { grid-template-columns: 1fr 1fr; } }
 .p-contact__btn { background: #fff; color: var(--sage-deep); border-radius: 4px; padding: 12px; font-family: var(--en); font-size: 20px; letter-spacing: .08em; line-height: 1.4; }
 .p-contact__btn small { display: block; font-family: var(--serif); font-size: 11px; color: var(--ink-soft); }
+.p-contact__mail-h { font-size: 13px; letter-spacing: .1em; margin-bottom: 10px; }
+.p-contact__mails { display: grid; gap: 10px; max-width: 520px; margin: 0 auto; }
+@media (min-width: 600px) { .p-contact__mails { grid-template-columns: 1fr 1fr; } }
+.p-contact__mails .c-btn { justify-content: space-between; padding: 10px 14px 10px 22px; font-family: var(--en); font-size: 14px; letter-spacing: .02em; text-align: left; line-height: 1.4; }
+.p-contact__mails .c-btn small { display: block; font-family: var(--serif); font-size: 11px; color: var(--ink-soft); letter-spacing: .1em; }
 
 /* ---------- フッター ---------- */
 .l-footer { background: #fff; color: var(--ink); text-align: center; padding: 56px 16px 32px; border-top: 4px solid var(--sage); }
